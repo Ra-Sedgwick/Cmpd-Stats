@@ -76,9 +76,9 @@ module.exports = __webpack_require__(1);
 
 let APIService = __webpack_require__(2);
 
-//var url = 'http://localhost:55981/api';
-// var url = 'http:cmpdstatistics.azurewebsites.net';
-var url = 'https://jsonplaceholder.typicode.com/posts';
+var dev = 'http://localhost:55981/api/';
+var prod = 'http://cmpdstatistics.azurewebsites.net/api/';
+var test = 'https://jsonplaceholder.typicode.com/posts';
 
 var loadData = function (endpoint) {
 
@@ -90,7 +90,9 @@ var loadData = function (endpoint) {
     });
 };
 
-loadData(url);
+loadData(dev + "OfficerShootings");
+//loadData(prod + "OfficerShootings");
+loadData(test);
 
 /***/ }),
 /* 2 */
@@ -99,6 +101,17 @@ loadData(url);
 class APIService {
 
     getData(endpoint) {
+
+        var request = new Request({
+            method: 'GET',
+            mode: 'cors',
+            redirect: 'follow',
+            headers: new Headers({
+                'Content-Type': 'application/javascript',
+                'Access-Control-Allow-Origin': '*'
+            })
+        });
+
         return fetch(endpoint).then(function (response) {
             return response.json();
         }).then(function (json) {

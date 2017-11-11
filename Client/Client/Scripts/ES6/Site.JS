@@ -1,9 +1,9 @@
 ﻿let APIService = require("./APIService");
 
 
-//var url = 'http://localhost:55981/api';
-// var url = 'http:cmpdstatistics.azurewebsites.net';
-var url = 'https://jsonplaceholder.typicode.com/posts'
+var dev = 'http://localhost:55981/api/';
+var prod = 'http://cmpdstatistics.azurewebsites.net/api/';
+var test = 'https://jsonplaceholder.typicode.com/posts'
 
 var loadData = function (endpoint) {
 
@@ -17,4 +17,6 @@ var loadData = function (endpoint) {
         })
 }
 
-loadData(url);
+loadData(dev + "OfficerShootings");
+//loadData(prod + "OfficerShootings");
+loadData(test);
