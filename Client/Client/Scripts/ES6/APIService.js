@@ -20,7 +20,6 @@
             throw new Error(response.status);
     }
 
-    
 }
 
 module.exports = new APIService;
