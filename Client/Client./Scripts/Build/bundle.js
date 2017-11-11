@@ -79,7 +79,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService__ = __webpack_require__(2);
 
 
-__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getData();
+__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getData().then(data => {
+    console.log(data);
+}).catch(error => {
+    consol.log(error);
+});
 
 /***/ }),
 /* 2 */
@@ -98,11 +102,7 @@ class NetworkService {
 
     getData() {
         let url = dev + "OfficerShootings";
-        __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(dev + "OfficerShootings").then(data => {
-            console.log(data);
-        }).catch(error => {
-            console.log("Error: " + error);
-        });
+        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
 }
@@ -142,32 +142,13 @@ class APIService {
         });
 
         let response = await fetch(endpoint, request);
-        if (response.ok) return await response.json();
-        throw new Error(response.status);
+
+        if (response.ok) return await response.json();else throw new Error(response.status);
     }
 
 }
 
 module.exports = new APIService();
-
-//getData(endpoint) {
-
-//    var request = new Request({
-//        method: 'GET',
-//        mode: 'cors',
-//        redirect: 'follow',
-//        headers: new Headers({
-//            'Content-Type': 'application/javascript',
-//            'Access-Control-Allow-Origin': '*'
-//        })
-//    });
-
-//    return fetch(endpoint).then(function (response) {
-//        return response.json();
-//    }).then(function (json) {
-//        return json;
-//    });
-//}
 
 /***/ })
 /******/ ]);

@@ -10,13 +10,7 @@ class NetworkService {
 
     getData() {
         let url = dev + "OfficerShootings";
-         APIService.getData(dev + "OfficerShootings")
-            .then((data) => {
-                console.log(data);
-            })
-            .catch((error) => {
-                console.log("Error: " + error);
-            });
+        return APIService.getData(url);
     }
 
 }
