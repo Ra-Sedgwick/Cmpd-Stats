@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cmpdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EmployeeDemographics">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="JOB_TITLE" Type="nvarchar" MaxLength="255" />
+          <Property Name="Years_Of_Service" Type="int" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="255" />
+          <Property Name="Race" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OfficerShootingIncidents">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="INCIDENT_ID" Type="int" />
+          <Property Name="YEAR_MONTH" Type="nvarchar" MaxLength="255" />
+          <Property Name="LOCATION" Type="nvarchar" MaxLength="255" />
+          <Property Name="DA_LEGAL_REVIEW" Type="nvarchar" MaxLength="255" />
+          <Property Name="NARRATIVE" Type="nvarchar(max)" />
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="YR" Type="int" />
+          <Property Name="MN" Type="int" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+        </EntityType>
+        <EntityType Name="OfficerShootingIndividuals">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="INCIDENT_ID" Type="int" />
+          <Property Name="INDIVIDUAL_RACE" Type="nvarchar" MaxLength="255" />
+          <Property Name="INDIVIDUAL_GENDER" Type="nvarchar" MaxLength="255" />
+          <Property Name="INDIVIDUAL_AGE" Type="float" />
+          <Property Name="INDIVIDUAL_INJURY_TYPE" Type="nvarchar" MaxLength="255" />
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="YR" Type="int" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+        </EntityType>
+        <EntityType Name="OfficerShootingOfficers">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="INCIDENT_ID" Type="int" />
+          <Property Name="OFFICER_RACE" Type="nvarchar" MaxLength="255" />
+          <Property Name="OFFICER_GENDER" Type="nvarchar" MaxLength="255" />
+          <Property Name="OFFICER_EXPERIENCE_YEARS" Type="float" />
+          <Property Name="OFFICER_POLICY_VIOLATION" Type="nvarchar" MaxLength="255" />
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="YR" Type="int" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+        </EntityType>
+        <EntityType Name="TrafficStops">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="int" Nullable="false" />
+          <Property Name="Stop_Date" Type="date" />
+          <Property Name="Reason_for_Stop" Type="nvarchar" MaxLength="255" />
+          <Property Name="Officer_Race" Type="nvarchar" MaxLength="255" />
+          <Property Name="Officer_Gender" Type="nvarchar" MaxLength="255" />
+          <Property Name="Officer_Years_of_Service" Type="int" />
+          <Property Name="Driver_Race" Type="nvarchar" MaxLength="255" />
+          <Property Name="Driver_Ethnicity" Type="nvarchar" MaxLength="255" />
+          <Property Name="Driver_Gender" Type="nvarchar" MaxLength="255" />
+          <Property Name="Driver_Age" Type="int" />
+          <Property Name="Was_a_Search_Conducted" Type="nvarchar" MaxLength="255" />
+          <Property Name="Result_of_Stop" Type="nvarchar" MaxLength="255" />
+          <Property Name="CMPD_Division" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Function Name="GetOfficerShootings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="cmpdModelStoreContainer">
+          <EntitySet Name="EmployeeDemographics" EntityType="Self.EmployeeDemographics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficerShootingIncidents" EntityType="Self.OfficerShootingIncidents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficerShootingIndividuals" EntityType="Self.OfficerShootingIndividuals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficerShootingOfficers" EntityType="Self.OfficerShootingOfficers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrafficStops" EntityType="Self.TrafficStops" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cmpdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmployeeDemographic">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="JOB_TITLE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Years_Of_Service" Type="Int32" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Race" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OfficerShootingIncident">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="INCIDENT_ID" Type="Int32" />
+          <Property Name="YEAR_MONTH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LOCATION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DA_LEGAL_REVIEW" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NARRATIVE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="YR" Type="Int32" />
+          <Property Name="MN" Type="Int32" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+        </EntityType>
+        <EntityType Name="OfficerShootingIndividual">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="INCIDENT_ID" Type="Int32" />
+          <Property Name="INDIVIDUAL_RACE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="INDIVIDUAL_GENDER" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="INDIVIDUAL_AGE" Type="Double" />
+          <Property Name="INDIVIDUAL_INJURY_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="YR" Type="Int32" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+        </EntityType>
+        <EntityType Name="OfficerShootingOfficer">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="INCIDENT_ID" Type="Int32" />
+          <Property Name="OFFICER_RACE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OFFICER_GENDER" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OFFICER_EXPERIENCE_YEARS" Type="Double" />
+          <Property Name="OFFICER_POLICY_VIOLATION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="YR" Type="Int32" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+        </EntityType>
+        <EntityType Name="TrafficStop">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Int32" Nullable="false" />
+          <Property Name="Stop_Date" Type="DateTime" Precision="0" />
+          <Property Name="Reason_for_Stop" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Officer_Race" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Officer_Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Officer_Years_of_Service" Type="Int32" />
+          <Property Name="Driver_Race" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Driver_Ethnicity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Driver_Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Driver_Age" Type="Int32" />
+          <Property Name="Was_a_Search_Conducted" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Result_of_Stop" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CMPD_Division" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="CmpdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeeDemographics" EntityType="Self.EmployeeDemographic" />
+          <EntitySet Name="OfficerShootingIncidents" EntityType="Self.OfficerShootingIncident" />
+          <EntitySet Name="OfficerShootingIndividuals" EntityType="Self.OfficerShootingIndividual" />
+          <EntitySet Name="OfficerShootingOfficers" EntityType="Self.OfficerShootingOfficer" />
+          <EntitySet Name="TrafficStops" EntityType="Self.TrafficStop" />
+          <FunctionImport Name="GetOfficerShootings" ReturnType="Collection(cmpdModel.GetOfficerShootings_Result)" />
+        </EntityContainer>
+        <ComplexType Name="GetOfficerShootings_Result">
+          <Property Type="Int32" Name="INCIDENT_ID" Nullable="true" />
+          <Property Type="String" Name="YEAR_MONTH" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="LOCATION" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DA_LEGAL_REVIEW" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="NARRATIVE" Nullable="true" />
+          <Property Type="Int32" Name="YR" Nullable="true" />
+          <Property Type="Int32" Name="MN" Nullable="true" />
+          <Property Type="Double" Name="Latitude" Nullable="true" />
+          <Property Type="Double" Name="Longitude" Nullable="true" />
+          <Property Type="String" Name="INDIVIDUAL_RACE" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="INDIVIDUAL_AGE" Nullable="true" />
+          <Property Type="String" Name="INDIVIDUAL_GENDER" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="INDIVIDUAL_INJURY_TYPE" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="OFFICER_GENDER" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="OFFICER_RACE" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="OFFICER_EXPERIENCE_YEARS" Nullable="true" />
+          <Property Type="String" Name="OFFICER_POLICY_VIOLATION" Nullable="true" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cmpdModelStoreContainer" CdmEntityContainer="CmpdEntities">
+          <EntitySetMapping Name="EmployeeDemographics">
+            <EntityTypeMapping TypeName="cmpdModel.EmployeeDemographic">
+              <MappingFragment StoreEntitySet="EmployeeDemographics">
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="Years_Of_Service" ColumnName="Years_Of_Service" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Race" ColumnName="Race" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficerShootingIncidents">
+            <EntityTypeMapping TypeName="cmpdModel.OfficerShootingIncident">
+              <MappingFragment StoreEntitySet="OfficerShootingIncidents">
+                <ScalarProperty Name="INCIDENT_ID" ColumnName="INCIDENT_ID" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="DA_LEGAL_REVIEW" ColumnName="DA_LEGAL_REVIEW" />
+                <ScalarProperty Name="NARRATIVE" ColumnName="NARRATIVE" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="YR" ColumnName="YR" />
+                <ScalarProperty Name="MN" ColumnName="MN" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficerShootingIndividuals">
+            <EntityTypeMapping TypeName="cmpdModel.OfficerShootingIndividual">
+              <MappingFragment StoreEntitySet="OfficerShootingIndividuals">
+                <ScalarProperty Name="INCIDENT_ID" ColumnName="INCIDENT_ID" />
+                <ScalarProperty Name="INDIVIDUAL_RACE" ColumnName="INDIVIDUAL_RACE" />
+                <ScalarProperty Name="INDIVIDUAL_GENDER" ColumnName="INDIVIDUAL_GENDER" />
+                <ScalarProperty Name="INDIVIDUAL_AGE" ColumnName="INDIVIDUAL_AGE" />
+                <ScalarProperty Name="INDIVIDUAL_INJURY_TYPE" ColumnName="INDIVIDUAL_INJURY_TYPE" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="YR" ColumnName="YR" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficerShootingOfficers">
+            <EntityTypeMapping TypeName="cmpdModel.OfficerShootingOfficer">
+              <MappingFragment StoreEntitySet="OfficerShootingOfficers">
+                <ScalarProperty Name="INCIDENT_ID" ColumnName="INCIDENT_ID" />
+                <ScalarProperty Name="OFFICER_RACE" ColumnName="OFFICER_RACE" />
+                <ScalarProperty Name="OFFICER_GENDER" ColumnName="OFFICER_GENDER" />
+                <ScalarProperty Name="OFFICER_EXPERIENCE_YEARS" ColumnName="OFFICER_EXPERIENCE_YEARS" />
+                <ScalarProperty Name="OFFICER_POLICY_VIOLATION" ColumnName="OFFICER_POLICY_VIOLATION" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="YR" ColumnName="YR" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrafficStops">
+            <EntityTypeMapping TypeName="cmpdModel.TrafficStop">
+              <MappingFragment StoreEntitySet="TrafficStops">
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="Stop_Date" ColumnName="Stop_Date" />
+                <ScalarProperty Name="Reason_for_Stop" ColumnName="Reason_for_Stop" />
+                <ScalarProperty Name="Officer_Race" ColumnName="Officer_Race" />
+                <ScalarProperty Name="Officer_Gender" ColumnName="Officer_Gender" />
+                <ScalarProperty Name="Officer_Years_of_Service" ColumnName="Officer_Years_of_Service" />
+                <ScalarProperty Name="Driver_Race" ColumnName="Driver_Race" />
+                <ScalarProperty Name="Driver_Ethnicity" ColumnName="Driver_Ethnicity" />
+                <ScalarProperty Name="Driver_Gender" ColumnName="Driver_Gender" />
+                <ScalarProperty Name="Driver_Age" ColumnName="Driver_Age" />
+                <ScalarProperty Name="Was_a_Search_Conducted" ColumnName="Was_a_Search_Conducted" />
+                <ScalarProperty Name="Result_of_Stop" ColumnName="Result_of_Stop" />
+                <ScalarProperty Name="CMPD_Division" ColumnName="CMPD_Division" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetOfficerShootings" FunctionName="cmpdModel.Store.GetOfficerShootings">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="cmpdModel.GetOfficerShootings_Result">
+                <ScalarProperty Name="INCIDENT_ID" ColumnName="INCIDENT_ID" />
+                <ScalarProperty Name="YEAR_MONTH" ColumnName="YEAR_MONTH" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="DA_LEGAL_REVIEW" ColumnName="DA_LEGAL_REVIEW" />
+                <ScalarProperty Name="NARRATIVE" ColumnName="NARRATIVE" />
+                <ScalarProperty Name="YR" ColumnName="YR" />
+                <ScalarProperty Name="MN" ColumnName="MN" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="INDIVIDUAL_RACE" ColumnName="INDIVIDUAL_RACE" />
+                <ScalarProperty Name="INDIVIDUAL_AGE" ColumnName="INDIVIDUAL_AGE" />
+                <ScalarProperty Name="INDIVIDUAL_GENDER" ColumnName="INDIVIDUAL_GENDER" />
+                <ScalarProperty Name="INDIVIDUAL_INJURY_TYPE" ColumnName="INDIVIDUAL_INJURY_TYPE" />
+                <ScalarProperty Name="OFFICER_GENDER" ColumnName="OFFICER_GENDER" />
+                <ScalarProperty Name="OFFICER_RACE" ColumnName="OFFICER_RACE" />
+                <ScalarProperty Name="OFFICER_EXPERIENCE_YEARS" ColumnName="OFFICER_EXPERIENCE_YEARS" />
+                <ScalarProperty Name="OFFICER_POLICY_VIOLATION" ColumnName="OFFICER_POLICY_VIOLATION" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
