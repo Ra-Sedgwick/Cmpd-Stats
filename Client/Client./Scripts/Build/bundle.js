@@ -72,35 +72,64 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-let APIService = __webpack_require__(2);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService__ = __webpack_require__(2);
 
-var dev = 'http://localhost:55981/api/';
-var prod = 'http://cmpdstatistics.azurewebsites.net/api/';
-var test = 'https://jsonplaceholder.typicode.com/posts';
 
-var loadData = function (endpoint) {
-
-    APIService.getData(endpoint).then(data => {
-        console.log("Call to: " + endpoint);
-        console.log(data);
-    }).catch(error => {
-        console.log("Error: " + error);
-    });
-};
-
-loadData(dev + "OfficerShootings");
-//loadData(prod + "OfficerShootings");
-loadData(test);
+__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getData();
 
 /***/ }),
 /* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__APIService__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__APIService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__APIService__);
+
+
+const dev = 'http://localhost:55981/api/';
+const prod = 'http://cmpdstatistics.azurewebsites.net/api/';
+const test = 'https://jsonplaceholder.typicode.com/posts';
+
+class NetworkService {
+
+    getData() {
+        let url = dev + "OfficerShootings";
+        __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(dev + "OfficerShootings").then(data => {
+            console.log(data);
+        }).catch(error => {
+            console.log("Error: " + error);
+        });
+    }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (new NetworkService());
+
+//var loadData = async function (endpoint) {
+
+//    APIService.getData(endpoint)
+//        .then((data) => {
+//            console.log("Call to: " + endpoint);
+//            console.log(data);
+//        })
+//        .catch((error) => {
+//            console.log("Error: " + error);
+//        })
+//}
+
+//await loadData(dev + "OfficerShootings");
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 class APIService {
 
-    getData(endpoint) {
+    async getData(endpoint) {
 
         var request = new Request({
             method: 'GET',
@@ -112,15 +141,33 @@ class APIService {
             })
         });
 
-        return fetch(endpoint).then(function (response) {
-            return response.json();
-        }).then(function (json) {
-            return json;
-        });
+        let response = await fetch(endpoint, request);
+        if (response.ok) return await response.json();
+        throw new Error(response.status);
     }
+
 }
 
 module.exports = new APIService();
+
+//getData(endpoint) {
+
+//    var request = new Request({
+//        method: 'GET',
+//        mode: 'cors',
+//        redirect: 'follow',
+//        headers: new Headers({
+//            'Content-Type': 'application/javascript',
+//            'Access-Control-Allow-Origin': '*'
+//        })
+//    });
+
+//    return fetch(endpoint).then(function (response) {
+//        return response.json();
+//    }).then(function (json) {
+//        return json;
+//    });
+//}
 
 /***/ })
 /******/ ]);

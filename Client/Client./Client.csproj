@@ -164,6 +164,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Build\bundle.js" />
     <Content Include="Scripts\ES6\APIService.js" />
+    <Content Include="Scripts\ES6\NetworkService.js" />
     <Content Include="Scripts\ES6\Site.js" />
     <Content Include="webpack.config.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
