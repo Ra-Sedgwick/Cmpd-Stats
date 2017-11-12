@@ -1,15 +1,18 @@
 ﻿import NetworkService from './NetworkService';
-import DemographicSearch from './DemographicSearch';
-import TrafficSearch from './TrafficSearch';
-import ShootingSearch from './ShootingSearch';
+import DemographicSearch from './Types/DemographicSearch';
+import TrafficSearch from './Types/TrafficSearch';
+import ShootingSearch from './Types/ShootingSearch';
+import OfficerShooting from './Types/OfficerShooting';
+import Table from './Components/Table';
 
 
-//NetworkService.getOfficerShootingsOrdered('date', 'descending')
-//    .then(data => {
-//        console.log("Get Stops ordered by date");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
+NetworkService.getOfficerShootings()
+    .then(data => {
+        console.log(data);
+        Table.Create(data, "table-1");
+
+    })
+    .catch(error => {
+        console.log(error);
+    });
 

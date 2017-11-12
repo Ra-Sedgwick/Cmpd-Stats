@@ -77,22 +77,24 @@ module.exports = __webpack_require__(1);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemographicSearch__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TrafficSearch__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ShootingSearch__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Types_DemographicSearch__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Types_TrafficSearch__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Types_ShootingSearch__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Types_OfficerShooting__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Components_Table__ = __webpack_require__(8);
 
 
 
 
 
-//NetworkService.getOfficerShootingsOrdered('date', 'descending')
-//    .then(data => {
-//        console.log("Get Stops ordered by date");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
+
+
+__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getOfficerShootings().then(data => {
+    console.log(data);
+    __WEBPACK_IMPORTED_MODULE_5__Components_Table__["a" /* default */].Create(data, "table-1");
+}).catch(error => {
+    console.log(error);
+});
 
 /***/ }),
 /* 2 */
@@ -270,7 +272,7 @@ class NetworkService {
 
 }
 
-/* unused harmony default export */ var _unused_webpack_default_export = (new NetworkService());
+/* harmony default export */ __webpack_exports__["a"] = (new NetworkService());
 
 /***/ }),
 /* 3 */
@@ -368,6 +370,53 @@ class ShootingSearch {
 }
 
 /* unused harmony default export */ var _unused_webpack_default_export = (ShootingSearch);
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class OfficerShooting {
+    constructor(shooting) {
+        this.id = shooting.INCIDENT_ID;
+        this.year = shooting.YR;
+        this.month = shooting.MN;
+        this.location = shooting.LOCATION;
+        this.legalReview = shooting.DA_LEAGL_REVIEW;
+        this.narrative = shooting.NARRATIVE;
+        this.latitude = shooting.Latitude;
+        this.longitude = shooting.Longitude;
+        this.individualRace = shooting.INDIVIDUAL_RACE;
+        this.individualAge = shooting.INDIVIDUAL_AGE;
+        this.individualGender = shooting.INDIVIDUAL_GENDER;
+        this.injuryType = shooting.INDIVIDUAL_INJURY_TYPE;
+        this.officerGender = shooting.OFFICER_GENDER;
+        this.officerRace = shooting.OFFICER_RACE;
+        this.officerExperience = shooting.OFFICER_EXPERIENCE_YEARS;
+        this.policyViolation = shooting.OFFICER_POLICY_VIOLATION;
+    }
+}
+
+/* unused harmony default export */ var _unused_webpack_default_export = (OfficerShooting);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Table {
+
+    Create(data, locationID) {
+
+        const keys = Object.keys(data[0]);
+        const header = `<table class="table"><thead>${keys.map(key => `<th scope="col">${key}</th>`).join('')}</thead></table>`;
+        document.getElementById(locationID).innerHTML = header;
+        console.log(header);
+    }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (new Table());
 
 /***/ })
 /******/ ]);

@@ -164,11 +164,13 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Build\bundle.js" />
     <Content Include="Scripts\ES6\APIService.js" />
-    <Content Include="Scripts\ES6\DemographicSearch.js" />
+    <Content Include="Scripts\ES6\Components\Table.js" />
+    <Content Include="Scripts\ES6\Types\DemographicSearch.js" />
     <Content Include="Scripts\ES6\NetworkService.js" />
-    <Content Include="Scripts\ES6\ShootingSearch.js" />
+    <Content Include="Scripts\ES6\Types\OfficerShooting.js" />
+    <Content Include="Scripts\ES6\Types\ShootingSearch.js" />
     <Content Include="Scripts\ES6\Site.js" />
-    <Content Include="Scripts\ES6\TrafficSearch.js" />
+    <Content Include="Scripts\ES6\Types\TrafficSearch.js" />
     <Content Include="webpack.config.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
