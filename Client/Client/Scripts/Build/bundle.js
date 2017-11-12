@@ -77,8 +77,9 @@ module.exports = __webpack_require__(1);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemographicSearch__ = __webpack_require__(4);
 
+//import DemographicSearch from './DemographicSearch';
+//import TrafficSearch from './TrafficSearch';
 
 
 //NetworkService.getDemographics()
@@ -110,14 +111,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //    });
 
 
-let demoSearch = new __WEBPACK_IMPORTED_MODULE_1__DemographicSearch__["a" /* default */](null, null, null, 26, 26, null, null);
-console.log("Search: " + demoSearch.ageMax + ", " + demoSearch.ageMax);
-__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getDemographicsSearch(demoSearch).then(data => {
-    console.log("Search Demographics");
-    console.log(data);
-}).catch(error => {
-    console.log(error);
-});
+//let demoSearch = new DemographicSearch(null, null, null, 26, 26, null, null);
+//NetworkService.getDemographicsSearch(demoSearch)
+//    .then(data => {
+//        console.log("Search Demographics");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+//NetworkService.getTrafficStops()
+//    .then(data => {
+//        console.log("Get All Stops");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+
+//NetworkService.getTrafficStop(1)
+//    .then(data => {
+//        console.log("Get Stops id = 1");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+//NetworkService.getTrafficStopsOrdered('date', 'descending')
+//    .then(data => {
+//        console.log("Get Stops ordered by date");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+//const search = new TrafficSearch();
+//search.officerGender = 'male';
+//search.officerRace = 'white';
+
+//NetworkService.getTrafficStopsSearch(search)
+//    .then(data => {
+//        console.log("search stops");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
 
 /***/ }),
 /* 2 */
@@ -131,28 +174,29 @@ __WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getDemographics
 // Base URLS
 const baseURL = 'http://localhost:55981/api';
 const demographics = '/EmployeeDemographics';
+const stops = '/TrafficStops';
 
 const prod = 'http://cmpdstatistics.azurewebsites.net/api/';
 const test = 'https://jsonplaceholder.typicode.com/posts';
 
 class NetworkService {
 
-    getDemographics() {
+    async getDemographics() {
         const url = `${baseURL}/${demographics}`;
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
-    getDemographic(id) {
+    async getDemographic(id) {
         const url = `${baseURL}/${demographics}/${id}`;
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
-    getDemographicsOrdered(action, order) {
+    async getDemographicsOrdered(action, order) {
         const url = `${baseURL}/${demographics}?action=${action}&order=${order}`;
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
-    getDemographicsSearch(options) {
+    async getDemographicsSearch(options) {
         const queryArguments = [];
         let query = "";
 
@@ -178,12 +222,88 @@ class NetworkService {
         }
 
         const url = `${baseURL}/${demographics}/${query}`;
-        console.log(url);
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
+
+    async getTrafficStops() {
+        const url = `${baseURL}/${stops}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getTrafficStop(id) {
+        const url = `${baseURL}/${stops}/${id}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getTrafficStopsOrdered(action, order) {
+        const url = `${baseURL}/${stops}?action=${action}&order=${order}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    //async getTrafficStopsSearch(options) {
+    //    console.log("In Network Service: " + options.officerGender + ": " + options.officerRace);
+    //    let queryArgument = [];
+    //    let url = "";
+
+    //    if (options.startDate != undefined)
+    //        queryArgument.push(`startDate=${options.startDate}`);
+
+    //    if (options.endDate != undefined)
+    //        queryArgument.push(`endDate=${options.endDate}`);
+
+    //    if (options.reason != undefined)
+    //        queryArgument.push(`reason=${options.reason}`);
+
+    //    if (options.officerRace != undefined) 
+    //        queryArgument.push(`officerRace=${options.officerRace}`);
+
+    //    if (options.officerGender != undefined) 
+    //        queryArgument.push(`officerGender=${options.officerGender}`);
+
+
+    //    if (options.experienceMin != undefined)
+    //        queryArgument.push(`experienceMin=${options.experienceMin}`);
+
+    //    if (options.experienceMax != undefined)
+    //        queryArgument.push(`experienceMax=${options.experienceMax}`);
+
+    //    if (options.driverRace != undefined)
+    //        queryArgument.push(`driverRace=${options.driverRace}`);
+
+    //    if (options.driverGender != undefined)
+    //        queryArgument.push(`driverGender=${options.driverGender}`);
+
+    //    if (options.search != undefined)
+    //        queryArgument.push(`search=${options.search}`);
+
+
+    //    if (options.division != undefined) {
+    //        queryArgument.push(`division=${options.division}`);
+
+    //        console.log("args " + queryArgument.length);
+
+
+    //    if(queryArguments.length > 0) {
+
+    //        query += `/Search?${queryArguments.pop()}`;
+
+
+    //        if (queryArguments.length > 0)
+    //            queryArguments.forEach(q => query += `&${q}`);
+
+    //        console.log(query);
+    //    }
+
+    //    const url = `${baseURL}/${stops}/${query}`;
+    //    console.log(url);
+    //    return await APIService.getData(url);
+
+    //    }
+
+    //}
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (new NetworkService());
+/* unused harmony default export */ var _unused_webpack_default_export = (new NetworkService());
 
 /***/ }),
 /* 3 */
@@ -211,25 +331,6 @@ class APIService {
 }
 
 module.exports = new APIService();
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class DemographicSearch {
-    constructor(_title, _experienceMin, _experienceMax, _ageMin, _ageMax, _gender, _race) {
-        this.title = _title;
-        this.experienceMin = _experienceMin;
-        this.experienceMax = _experienceMax;
-        this.ageMin = _ageMin;
-        this.ageMax = _ageMax;
-        this.gender = _gender;
-        this.race = _race;
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (DemographicSearch);
 
 /***/ })
 /******/ ]);

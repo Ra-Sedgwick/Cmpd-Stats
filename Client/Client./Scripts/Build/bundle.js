@@ -110,14 +110,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //    });
 
 
-let demoSearch = new __WEBPACK_IMPORTED_MODULE_1__DemographicSearch__["a" /* default */](null, null, null, 26, 26, null, null);
-console.log("Search: " + demoSearch.ageMax + ", " + demoSearch.ageMax);
-__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getDemographicsSearch(demoSearch).then(data => {
-    console.log("Search Demographics");
+//let demoSearch = new DemographicSearch(null, null, null, 26, 26, null, null);
+//NetworkService.getDemographicsSearch(demoSearch)
+//    .then(data => {
+//        console.log("Search Demographics");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getTrafficStops().then(data => {
+    console.log("Get All Stops");
     console.log(data);
 }).catch(error => {
     console.log(error);
 });
+
+__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getTrafficStop(1).then(data => {
+    console.log("Get Stops id = 1");
+    console.log(data);
+}).catch(error => {
+    console.log(error);
+});
+
+//NetworkService.getTrafficStopsOrdered('date', 'descending')
+//    .then(data => {
+//        console.log("Get Stops ordered by date");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
 
 /***/ }),
 /* 2 */
@@ -131,28 +155,29 @@ __WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getDemographics
 // Base URLS
 const baseURL = 'http://localhost:55981/api';
 const demographics = '/EmployeeDemographics';
+const stops = '/TrafficStops';
 
 const prod = 'http://cmpdstatistics.azurewebsites.net/api/';
 const test = 'https://jsonplaceholder.typicode.com/posts';
 
 class NetworkService {
 
-    getDemographics() {
+    async getDemographics() {
         const url = `${baseURL}/${demographics}`;
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
-    getDemographic(id) {
+    async getDemographic(id) {
         const url = `${baseURL}/${demographics}/${id}`;
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
-    getDemographicsOrdered(action, order) {
+    async getDemographicsOrdered(action, order) {
         const url = `${baseURL}/${demographics}?action=${action}&order=${order}`;
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
-    getDemographicsSearch(options) {
+    async getDemographicsSearch(options) {
         const queryArguments = [];
         let query = "";
 
@@ -178,8 +203,23 @@ class NetworkService {
         }
 
         const url = `${baseURL}/${demographics}/${query}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getTrafficStops() {
+        const url = `${baseURL}/${stops}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getTrafficStop(id) {
+        const url = `${baseURL}/${stops}/${id}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getTrafficStopsOrdered(action, order) {
+        const url = `${baseURL}/${stops}?action=${action}&order=${order}`;
         console.log(url);
-        return __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 }
 
@@ -229,7 +269,7 @@ class DemographicSearch {
     }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (DemographicSearch);
+/* unused harmony default export */ var _unused_webpack_default_export = (DemographicSearch);
 
 /***/ })
 /******/ ]);

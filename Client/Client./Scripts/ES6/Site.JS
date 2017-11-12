@@ -33,14 +33,40 @@ import DemographicSearch from './DemographicSearch';
 
 
 
-let demoSearch = new DemographicSearch(null, null, null, 26, 26, null, null);
-console.log("Search: " + demoSearch.ageMax + ", " + demoSearch.ageMax);
-NetworkService.getDemographicsSearch(demoSearch)
+//let demoSearch = new DemographicSearch(null, null, null, 26, 26, null, null);
+//NetworkService.getDemographicsSearch(demoSearch)
+//    .then(data => {
+//        console.log("Search Demographics");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+NetworkService.getTrafficStops()
     .then(data => {
-        console.log("Search Demographics");
+        console.log("Get All Stops");
         console.log(data);
     })
     .catch(error => {
         console.log(error);
     });
 
+
+NetworkService.getTrafficStop(1)
+    .then(data => {
+        console.log("Get Stops id = 1");
+        console.log(data);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+//NetworkService.getTrafficStopsOrdered('date', 'descending')
+//    .then(data => {
+//        console.log("Get Stops ordered by date");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });

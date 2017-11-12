@@ -198,6 +198,7 @@ namespace App.Models
 
         public List<TrafficStop> OrderedTrafficStops(String action, String order)
         {
+
             List<TrafficStop> stops = TrafficStops.ToList();
 
             switch (action)
