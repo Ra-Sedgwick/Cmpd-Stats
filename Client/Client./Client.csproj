@@ -166,6 +166,7 @@
     <Content Include="Scripts\ES6\APIService.js" />
     <Content Include="Scripts\ES6\DemographicSearch.js" />
     <Content Include="Scripts\ES6\NetworkService.js" />
+    <Content Include="Scripts\ES6\ShootingSearch.js" />
     <Content Include="Scripts\ES6\Site.js" />
     <Content Include="Scripts\ES6\TrafficSearch.js" />
     <Content Include="webpack.config.js" />

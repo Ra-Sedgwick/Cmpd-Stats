@@ -79,6 +79,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemographicSearch__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TrafficSearch__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ShootingSearch__ = __webpack_require__(6);
+
 
 
 
@@ -151,12 +153,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //        console.log(error);
 //    });
 
-const search = new __WEBPACK_IMPORTED_MODULE_2__TrafficSearch__["a" /* default */]();
+//const search = new TrafficSearch();
+//search.officerGender = 'male';
+//search.officerRace = 'white';
+
+//NetworkService.getTrafficStopsSearch(search)
+//    .then(data => {
+//        console.log("search stops");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+let search = new __WEBPACK_IMPORTED_MODULE_3__ShootingSearch__["a" /* default */]();
 search.officerGender = 'male';
 search.officerRace = 'white';
 
-__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getTrafficStopsSearch(search).then(data => {
-    console.log("search stops");
+__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getOfficerShootingsSearch(search).then(data => {
+    console.log("search shootings");
     console.log(data);
 }).catch(error => {
     console.log(error);
@@ -175,6 +190,7 @@ __WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getTrafficStops
 const baseURL = 'http://localhost:55981/api';
 const demographics = '/EmployeeDemographics';
 const stops = '/TrafficStops';
+const shootings = '/OfficerShootings';
 
 const prod = 'http://cmpdstatistics.azurewebsites.net/api/';
 const test = 'https://jsonplaceholder.typicode.com/posts';
@@ -274,6 +290,49 @@ class NetworkService {
         }
 
         const url = `${baseURL}/${stops}/${query}`;
+        console.log(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getOfficerShootingsSearch(options) {
+
+        let queryArguments = [];
+        let query = "";
+
+        if (options.start != undefined) queryArguments.push(`start=${options.start}`);
+
+        if (options.end != undefined) queryArguments.push(`end=${options.end}`);
+
+        if (options.officerRace != undefined) queryArguments.push(`officerRace=${options.officerRace}`);
+
+        if (options.individualRace != undefined) queryArguments.push(`individualRace=${options.individualRace}`);
+
+        if (options.individualAgeMin != undefined) queryArguments.push(`individualAgeMin=${options.individualAgeMin}`);
+
+        if (options.individualAgeMax != undefined) queryArguments.push(`individualAgeMax=${options.individualAgeMax}`);
+
+        if (options.policyViolation != undefined) queryArguments.push(`policyViolation=${options.policyViolation}`);
+
+        if (options.injuryType != undefined) queryArguments.push(`injuryType=${options.injuryType}`);
+
+        if (options.officerExperienceMin != undefined) queryArguments.push(`officerExperienceMin=${options.officerExperienceMin}`);
+
+        if (options.officerExperienceMax != undefined) queryArguments.push(`officerExperienceMax=${options.officerExperienceMax}`);
+
+        if (options.officerGender != undefined) queryArguments.push(`officerGender=${options.officerGender}`);
+
+        if (options.individualGender != undefined) queryArguments.push(`individualGender=${options.individualGender}`);
+
+        if (queryArguments.length > 0) {
+
+            query += `/Search?${queryArguments.pop()}`;
+
+            if (queryArguments.length > 0) queryArguments.forEach(q => query += `&${q}`);
+
+            console.log(query);
+        }
+
+        const url = `${baseURL}/${shootings}/${query}`;
         console.log(url);
         return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
@@ -406,7 +465,32 @@ class TrafficSearch {
 
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (TrafficSearch);
+/* unused harmony default export */ var _unused_webpack_default_export = (TrafficSearch);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class ShootingSearch {
+
+    constructor(_start, _end, _officerRace, _individiualRace, _individualAgeMin, _individualAgeMax, _policyViolation, _injuryType, _officerExperianceMin, _officerExperieanceMax, _officerGender, _individualGender) {
+        this.start = _start;
+        this.end = _end;
+        this.officerRace = _officerRace;
+        this.individualRace = _individiualRace;
+        this.individualAgeMin = _individualAgeMin;
+        this.individualAgeMax = _individualAgeMax;
+        this.policyViolation = _policyViolation;
+        this.injuryType = _injuryType;
+        this.officerExperienaceMin = _officerExperianceMin;
+        this.officerExperienceMax = _officerExperianceMin;
+        this.officerGender = _officerGender;
+        this.individualGender = _injuryType;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (ShootingSearch);
 
 /***/ })
 /******/ ]);

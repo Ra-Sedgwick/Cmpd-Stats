@@ -5,6 +5,7 @@
 const baseURL = 'http://localhost:55981/api';
 const demographics = '/EmployeeDemographics';
 const stops = '/TrafficStops';
+const shootings = '/OfficerShootings';
 
 const prod = 'http://cmpdstatistics.azurewebsites.net/api/';
 const test = 'https://jsonplaceholder.typicode.com/posts'
@@ -131,8 +132,64 @@ class NetworkService {
 
     }
 
-       
+    async getOfficerShootingsSearch(options) {
 
+        let queryArguments = [];
+        let query = "";
+
+        if (options.start != undefined)
+            queryArguments.push(`start=${options.start}`);
+
+        if (options.end != undefined)
+            queryArguments.push(`end=${options.end}`);
+
+        if (options.officerRace != undefined)
+            queryArguments.push(`officerRace=${options.officerRace}`);
+
+        if (options.individualRace != undefined)
+            queryArguments.push(`individualRace=${options.individualRace}`);
+
+        if (options.individualAgeMin != undefined)
+            queryArguments.push(`individualAgeMin=${options.individualAgeMin}`);
+
+        if (options.individualAgeMax != undefined)
+            queryArguments.push(`individualAgeMax=${options.individualAgeMax}`);
+
+        if (options.policyViolation != undefined)
+            queryArguments.push(`policyViolation=${options.policyViolation}`);
+
+        if (options.injuryType != undefined)
+            queryArguments.push(`injuryType=${options.injuryType}`);
+
+        if (options.officerExperienceMin != undefined)
+            queryArguments.push(`officerExperienceMin=${options.officerExperienceMin}`);
+
+        if (options.officerExperienceMax != undefined)
+            queryArguments.push(`officerExperienceMax=${options.officerExperienceMax}`);
+
+        if (options.officerGender != undefined)
+            queryArguments.push(`officerGender=${options.officerGender}`);
+
+        if (options.individualGender != undefined)
+            queryArguments.push(`individualGender=${options.individualGender}`);
+
+
+        if (queryArguments.length > 0) {
+
+            query += `/Search?${queryArguments.pop()}`;
+
+
+            if (queryArguments.length > 0)
+                queryArguments.forEach(q => query += `&${q}`);
+
+            console.log(query);
+        }
+
+        const url = `${baseURL}/${shootings}/${query}`;
+        console.log(url);
+        return await APIService.getData(url);
+
+    }
         
 }
 

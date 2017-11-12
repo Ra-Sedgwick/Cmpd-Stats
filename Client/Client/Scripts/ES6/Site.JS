@@ -1,6 +1,7 @@
 ﻿import NetworkService from './NetworkService';
 import DemographicSearch from './DemographicSearch';
 import TrafficSearch from './TrafficSearch';
+import ShootingSearch from './ShootingSearch';
 
 
 //NetworkService.getDemographics()
@@ -85,3 +86,16 @@ import TrafficSearch from './TrafficSearch';
 //    .catch(error => {
 //        console.log(error);
 //    });
+
+let search = new ShootingSearch();
+search.officerGender = 'male';
+search.officerRace = 'white';
+
+NetworkService.getOfficerShootingsSearch(search)
+    .then(data => {
+        console.log("search shootings");
+        console.log(data);
+    })
+    .catch(error => {
+        console.log(error);
+    });

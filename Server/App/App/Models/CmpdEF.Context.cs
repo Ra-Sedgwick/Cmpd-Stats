@@ -154,10 +154,10 @@ namespace App.Models
             String individualRace,
             int individualAgeMin,
             int individualAgeMax,
-            String policyVioladion,
+            String policyViolation,
             String injuryType,
-            int officerExperainceMin,
-            int officerExperianceMax,
+            int officerExperienceMin,
+            int officerExperienceMax,
             String officerGender,
             String individualGender)
         {
@@ -165,7 +165,7 @@ namespace App.Models
 
             shootings = (from ois in shootings
                          where ois.INDIVIDUAL_AGE >= individualAgeMin && ois.INDIVIDUAL_AGE <= individualAgeMax &&
-                               ois.OFFICER_EXPERIENCE_YEARS >= officerExperainceMin && ois.OFFICER_EXPERIENCE_YEARS <= officerExperianceMax
+                               ois.OFFICER_EXPERIENCE_YEARS >= officerExperienceMin && ois.OFFICER_EXPERIENCE_YEARS <= officerExperienceMax
                          select ois)
                         .ToList();
 
@@ -178,8 +178,8 @@ namespace App.Models
             if (individualRace != null)
                 shootings = shootings.Where(ois => ois.INDIVIDUAL_RACE.ToLower() == individualRace.ToLower()).ToList();
 
-            if (policyVioladion != null)
-                shootings = shootings.Where(ois => ois.OFFICER_POLICY_VIOLATION.ToLower() == policyVioladion.ToLower()).ToList();
+            if (policyViolation != null)
+                shootings = shootings.Where(ois => ois.OFFICER_POLICY_VIOLATION.ToLower() == policyViolation.ToLower()).ToList();
 
             if (injuryType != null)
                 shootings = shootings.Where(ois => ois.INDIVIDUAL_INJURY_TYPE.ToLower() == injuryType.ToLower()).ToList();
