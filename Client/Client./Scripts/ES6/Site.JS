@@ -1,5 +1,6 @@
 ﻿import NetworkService from './NetworkService';
 import DemographicSearch from './DemographicSearch';
+import TrafficSearch from './TrafficSearch';
 
 
 //NetworkService.getDemographics()
@@ -43,28 +44,42 @@ import DemographicSearch from './DemographicSearch';
 //        console.log(error);
 //    });
 
-NetworkService.getTrafficStops()
-    .then(data => {
-        console.log("Get All Stops");
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
-    });
+
+//NetworkService.getTrafficStops()
+//    .then(data => {
+//        console.log("Get All Stops");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
 
 
-NetworkService.getTrafficStop(1)
-    .then(data => {
-        console.log("Get Stops id = 1");
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
-    });
+//NetworkService.getTrafficStop(1)
+//    .then(data => {
+//        console.log("Get Stops id = 1");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
 
 //NetworkService.getTrafficStopsOrdered('date', 'descending')
 //    .then(data => {
 //        console.log("Get Stops ordered by date");
+//        console.log(data);
+//    })
+//    .catch(error => {
+//        console.log(error);
+//    });
+
+//const search = new TrafficSearch();
+//search.officerGender = 'male';
+//search.officerRace = 'white';
+
+//NetworkService.getTrafficStopsSearch(search)
+//    .then(data => {
+//        console.log("search stops");
 //        console.log(data);
 //    })
 //    .catch(error => {

@@ -27,7 +27,7 @@ class NetworkService {
     }
 
     async getDemographicsSearch(options) {
-        const queryArguments = [];
+        let queryArguments = [];
         let query = "";
 
         if (options.title != undefined)
@@ -76,11 +76,120 @@ class NetworkService {
 
     async getTrafficStopsOrdered(action, order) {
         const url = `${baseURL}/${stops}?action=${action}&order=${order}`;
-        console.log(url);
         return await APIService.getData(url);
     }
+
+    async getTrafficStopsSearch(options) {
+        let queryArguments = [];
+        let query = "";
+
+        if (options.startDate != undefined)
+            queryArguments.push(`startDate=${options.startDate}`);
+
+        if (options.endDate != undefined)
+            queryArguments.push(`endDate=${options.endDate}`);
+
+        if (options.reason != undefined)
+            queryArguments.push(`reason=${options.reason}`);
+
+        if (options.officerRace != undefined)
+            queryArguments.push(`officerRace=${options.officerRace}`);
+
+        if (options.officerGender != undefined)
+            queryArguments.push(`officerGender=${options.officerGender}`);
+
+
+        if (options.experienceMin != undefined)
+            queryArguments.push(`experienceMin=${options.experienceMin}`);
+
+        if (options.experienceMax != undefined)
+            queryArguments.push(`experienceMax=${options.experienceMax}`);
+
+        if (options.driverRace != undefined)
+            queryArguments.push(`driverRace=${options.driverRace}`);
+
+        if (options.driverGender != undefined)
+            queryArguments.push(`driverGender=${options.driverGender}`);
+
+        if (options.search != undefined)
+            queryArguments.push(`search=${options.search}`);
+
+        if (queryArguments.length > 0) {
+
+            query += `/Search?${queryArguments.pop()}`;
+
+
+            if (queryArguments.length > 0)
+                queryArguments.forEach(q => query += `&${q}`);
+
+            console.log(query);
+        }
+
+        const url = `${baseURL}/${stops}/${query}`;
+        console.log(url);
+        return await APIService.getData(url);
+
+    }
+
+       
+
+        
 }
 
 export default new NetworkService();
 
+//async getTrafficStopsSearch(options) {
+//    console.log("In Network Service: " + options.officerGender + ": " + options.officerRace);
+//    let queryArgument = [];
+//    let url = "";
 
+//    if (options.startDate != undefined)
+//        queryArgument.push(`startDate=${options.startDate}`);
+
+//    if (options.endDate != undefined)
+//        queryArgument.push(`endDate=${options.endDate}`);
+
+//    if (options.reason != undefined)
+//        queryArgument.push(`reason=${options.reason}`);
+
+//    if (options.officerRace != undefined)
+//        queryArgument.push(`officerRace=${options.officerRace}`);
+
+//    if (options.officerGender != undefined)
+//        queryArgument.push(`officerGender=${options.officerGender}`);
+
+
+//    if (options.experienceMin != undefined)
+//        queryArgument.push(`experienceMin=${options.experienceMin}`);
+
+//    if (options.experienceMax != undefined)
+//        queryArgument.push(`experienceMax=${options.experienceMax}`);
+
+//    if (options.driverRace != undefined)
+//        queryArgument.push(`driverRace=${options.driverRace}`);
+
+//    if (options.driverGender != undefined)
+//        queryArgument.push(`driverGender=${options.driverGender}`);
+
+//    if (options.search != undefined)
+//        queryArgument.push(`search=${options.search}`);
+
+
+
+
+//    if (queryArguments.length > 0) {
+
+//        query += `/Search?${queryArguments.pop()}`;
+
+
+//        if (queryArguments.length > 0)
+//            queryArguments.forEach(q => query += `&${q}`);
+
+//        console.log(query);
+//    }
+
+//    const url = `${baseURL}/${stops}/${query}`;
+//    console.log(url);
+//    return await APIService.getData(url);
+
+//}

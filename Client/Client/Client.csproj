@@ -163,7 +163,6 @@
     <Content Include="package.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Build\bundle.js" />
-    <Content Include="Scripts\Build\_bundle.js" />
     <Content Include="Scripts\ES6\APIService.js" />
     <Content Include="Scripts\ES6\DemographicSearch.js" />
     <Content Include="Scripts\ES6\NetworkService.js" />

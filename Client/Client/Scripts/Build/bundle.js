@@ -77,9 +77,10 @@ module.exports = __webpack_require__(1);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemographicSearch__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TrafficSearch__ = __webpack_require__(5);
 
-//import DemographicSearch from './DemographicSearch';
-//import TrafficSearch from './TrafficSearch';
+
 
 
 //NetworkService.getDemographics()
@@ -121,6 +122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //        console.log(error);
 //    });
 
+
 //NetworkService.getTrafficStops()
 //    .then(data => {
 //        console.log("Get All Stops");
@@ -149,18 +151,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //        console.log(error);
 //    });
 
-//const search = new TrafficSearch();
-//search.officerGender = 'male';
-//search.officerRace = 'white';
+const search = new __WEBPACK_IMPORTED_MODULE_2__TrafficSearch__["a" /* default */]();
+search.officerGender = 'male';
+search.officerRace = 'white';
 
-//NetworkService.getTrafficStopsSearch(search)
-//    .then(data => {
-//        console.log("search stops");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
+__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getTrafficStopsSearch(search).then(data => {
+    console.log("search stops");
+    console.log(data);
+}).catch(error => {
+    console.log(error);
+});
 
 /***/ }),
 /* 2 */
@@ -197,7 +197,7 @@ class NetworkService {
     }
 
     async getDemographicsSearch(options) {
-        const queryArguments = [];
+        let queryArguments = [];
         let query = "";
 
         if (options.title != undefined) queryArguments.push(`title=${options.title}`);
@@ -240,70 +240,101 @@ class NetworkService {
         return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
-    //async getTrafficStopsSearch(options) {
-    //    console.log("In Network Service: " + options.officerGender + ": " + options.officerRace);
-    //    let queryArgument = [];
-    //    let url = "";
+    async getTrafficStopsSearch(options) {
+        let queryArguments = [];
+        let query = "";
 
-    //    if (options.startDate != undefined)
-    //        queryArgument.push(`startDate=${options.startDate}`);
+        if (options.startDate != undefined) queryArguments.push(`startDate=${options.startDate}`);
 
-    //    if (options.endDate != undefined)
-    //        queryArgument.push(`endDate=${options.endDate}`);
+        if (options.endDate != undefined) queryArguments.push(`endDate=${options.endDate}`);
 
-    //    if (options.reason != undefined)
-    //        queryArgument.push(`reason=${options.reason}`);
+        if (options.reason != undefined) queryArguments.push(`reason=${options.reason}`);
 
-    //    if (options.officerRace != undefined) 
-    //        queryArgument.push(`officerRace=${options.officerRace}`);
+        if (options.officerRace != undefined) queryArguments.push(`officerRace=${options.officerRace}`);
 
-    //    if (options.officerGender != undefined) 
-    //        queryArgument.push(`officerGender=${options.officerGender}`);
+        if (options.officerGender != undefined) queryArguments.push(`officerGender=${options.officerGender}`);
 
+        if (options.experienceMin != undefined) queryArguments.push(`experienceMin=${options.experienceMin}`);
 
-    //    if (options.experienceMin != undefined)
-    //        queryArgument.push(`experienceMin=${options.experienceMin}`);
+        if (options.experienceMax != undefined) queryArguments.push(`experienceMax=${options.experienceMax}`);
 
-    //    if (options.experienceMax != undefined)
-    //        queryArgument.push(`experienceMax=${options.experienceMax}`);
+        if (options.driverRace != undefined) queryArguments.push(`driverRace=${options.driverRace}`);
 
-    //    if (options.driverRace != undefined)
-    //        queryArgument.push(`driverRace=${options.driverRace}`);
+        if (options.driverGender != undefined) queryArguments.push(`driverGender=${options.driverGender}`);
 
-    //    if (options.driverGender != undefined)
-    //        queryArgument.push(`driverGender=${options.driverGender}`);
+        if (options.search != undefined) queryArguments.push(`search=${options.search}`);
 
-    //    if (options.search != undefined)
-    //        queryArgument.push(`search=${options.search}`);
+        if (queryArguments.length > 0) {
 
+            query += `/Search?${queryArguments.pop()}`;
 
-    //    if (options.division != undefined) {
-    //        queryArgument.push(`division=${options.division}`);
+            if (queryArguments.length > 0) queryArguments.forEach(q => query += `&${q}`);
 
-    //        console.log("args " + queryArgument.length);
+            console.log(query);
+        }
 
+        const url = `${baseURL}/${stops}/${query}`;
+        console.log(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
 
-    //    if(queryArguments.length > 0) {
-
-    //        query += `/Search?${queryArguments.pop()}`;
-
-
-    //        if (queryArguments.length > 0)
-    //            queryArguments.forEach(q => query += `&${q}`);
-
-    //        console.log(query);
-    //    }
-
-    //    const url = `${baseURL}/${stops}/${query}`;
-    //    console.log(url);
-    //    return await APIService.getData(url);
-
-    //    }
-
-    //}
 }
 
-/* unused harmony default export */ var _unused_webpack_default_export = (new NetworkService());
+/* harmony default export */ __webpack_exports__["a"] = (new NetworkService());
+
+//async getTrafficStopsSearch(options) {
+//    console.log("In Network Service: " + options.officerGender + ": " + options.officerRace);
+//    let queryArgument = [];
+//    let url = "";
+
+//    if (options.startDate != undefined)
+//        queryArgument.push(`startDate=${options.startDate}`);
+
+//    if (options.endDate != undefined)
+//        queryArgument.push(`endDate=${options.endDate}`);
+
+//    if (options.reason != undefined)
+//        queryArgument.push(`reason=${options.reason}`);
+
+//    if (options.officerRace != undefined)
+//        queryArgument.push(`officerRace=${options.officerRace}`);
+
+//    if (options.officerGender != undefined)
+//        queryArgument.push(`officerGender=${options.officerGender}`);
+
+
+//    if (options.experienceMin != undefined)
+//        queryArgument.push(`experienceMin=${options.experienceMin}`);
+
+//    if (options.experienceMax != undefined)
+//        queryArgument.push(`experienceMax=${options.experienceMax}`);
+
+//    if (options.driverRace != undefined)
+//        queryArgument.push(`driverRace=${options.driverRace}`);
+
+//    if (options.driverGender != undefined)
+//        queryArgument.push(`driverGender=${options.driverGender}`);
+
+//    if (options.search != undefined)
+//        queryArgument.push(`search=${options.search}`);
+
+
+//    if (queryArguments.length > 0) {
+
+//        query += `/Search?${queryArguments.pop()}`;
+
+
+//        if (queryArguments.length > 0)
+//            queryArguments.forEach(q => query += `&${q}`);
+
+//        console.log(query);
+//    }
+
+//    const url = `${baseURL}/${stops}/${query}`;
+//    console.log(url);
+//    return await APIService.getData(url);
+
+//}
 
 /***/ }),
 /* 3 */
@@ -331,6 +362,51 @@ class APIService {
 }
 
 module.exports = new APIService();
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class DemographicSearch {
+    constructor(_title, _experienceMin, _experienceMax, _ageMin, _ageMax, _gender, _race) {
+        this.title = _title;
+        this.experienceMin = _experienceMin;
+        this.experienceMax = _experienceMax;
+        this.ageMin = _ageMin;
+        this.ageMax = _ageMax;
+        this.gender = _gender;
+        this.race = _race;
+    }
+}
+
+/* unused harmony default export */ var _unused_webpack_default_export = (DemographicSearch);
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class TrafficSearch {
+
+    constructor(_startDate, _endDate, _reason, _officerRace, _officerGender, _experienceMin, _experienceMax, _driverRace, _driverAgeMin, _driverAgeMax, _search, _result, _division) {
+        this.startDate = _startDate;
+        this.endDate = _endDate;
+        this.reason = _reason;
+        this.officerRace = _officerRace;
+        this.officerGender = _officerGender;
+        this.experienceMin = _experienceMin;
+        this.experienceMax = _experienceMax;
+        this.driverAgeMin = _driverAgeMax;
+        this.driverAgeMax = _driverAgeMax;
+        this.search = _search;
+        this.result = _result;
+        this.division = _division;
+    }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (TrafficSearch);
 
 /***/ })
 /******/ ]);

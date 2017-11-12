@@ -1,6 +1,6 @@
 ﻿import NetworkService from './NetworkService';
-//import DemographicSearch from './DemographicSearch';
-//import TrafficSearch from './TrafficSearch';
+import DemographicSearch from './DemographicSearch';
+import TrafficSearch from './TrafficSearch';
 
 
 //NetworkService.getDemographics()
@@ -43,6 +43,7 @@
 //    .catch(error => {
 //        console.log(error);
 //    });
+
 
 //NetworkService.getTrafficStops()
 //    .then(data => {
