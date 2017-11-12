@@ -4,68 +4,7 @@ import TrafficSearch from './TrafficSearch';
 import ShootingSearch from './ShootingSearch';
 
 
-//NetworkService.getDemographics()
-//    .then(data => {
-//        console.log("Get All Demographics");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-//NetworkService.getDemographic(1)
-//    .then(data => {
-//        console.log("Get Demographic id = 1");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-//NetworkService.getDemographicsOrdered('officerExperience', 'descending')
-//    .then(data => {
-//        console.log("Order Demographics by experience DESC");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-
-
-//let demoSearch = new DemographicSearch(null, null, null, 26, 26, null, null);
-//NetworkService.getDemographicsSearch(demoSearch)
-//    .then(data => {
-//        console.log("Search Demographics");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-//NetworkService.getTrafficStops()
-//    .then(data => {
-//        console.log("Get All Stops");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-//NetworkService.getTrafficStop(1)
-//    .then(data => {
-//        console.log("Get Stops id = 1");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-//NetworkService.getTrafficStopsOrdered('date', 'descending')
+//NetworkService.getOfficerShootingsOrdered('date', 'descending')
 //    .then(data => {
 //        console.log("Get Stops ordered by date");
 //        console.log(data);
@@ -74,28 +13,3 @@ import ShootingSearch from './ShootingSearch';
 //        console.log(error);
 //    });
 
-//const search = new TrafficSearch();
-//search.officerGender = 'male';
-//search.officerRace = 'white';
-
-//NetworkService.getTrafficStopsSearch(search)
-//    .then(data => {
-//        console.log("search stops");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-let search = new ShootingSearch();
-search.officerGender = 'male';
-search.officerRace = 'white';
-
-NetworkService.getOfficerShootingsSearch(search)
-    .then(data => {
-        console.log("search shootings");
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
-    });

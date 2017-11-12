@@ -85,66 +85,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-//NetworkService.getDemographics()
-//    .then(data => {
-//        console.log("Get All Demographics");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-//NetworkService.getDemographic(1)
-//    .then(data => {
-//        console.log("Get Demographic id = 1");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-//NetworkService.getDemographicsOrdered('officerExperience', 'descending')
-//    .then(data => {
-//        console.log("Order Demographics by experience DESC");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-//let demoSearch = new DemographicSearch(null, null, null, 26, 26, null, null);
-//NetworkService.getDemographicsSearch(demoSearch)
-//    .then(data => {
-//        console.log("Search Demographics");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-//NetworkService.getTrafficStops()
-//    .then(data => {
-//        console.log("Get All Stops");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-
-//NetworkService.getTrafficStop(1)
-//    .then(data => {
-//        console.log("Get Stops id = 1");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-//NetworkService.getTrafficStopsOrdered('date', 'descending')
+//NetworkService.getOfficerShootingsOrdered('date', 'descending')
 //    .then(data => {
 //        console.log("Get Stops ordered by date");
 //        console.log(data);
@@ -152,30 +93,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //    .catch(error => {
 //        console.log(error);
 //    });
-
-//const search = new TrafficSearch();
-//search.officerGender = 'male';
-//search.officerRace = 'white';
-
-//NetworkService.getTrafficStopsSearch(search)
-//    .then(data => {
-//        console.log("search stops");
-//        console.log(data);
-//    })
-//    .catch(error => {
-//        console.log(error);
-//    });
-
-let search = new __WEBPACK_IMPORTED_MODULE_3__ShootingSearch__["a" /* default */]();
-search.officerGender = 'male';
-search.officerRace = 'white';
-
-__WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getOfficerShootingsSearch(search).then(data => {
-    console.log("search shootings");
-    console.log(data);
-}).catch(error => {
-    console.log(error);
-});
 
 /***/ }),
 /* 2 */
@@ -285,12 +202,29 @@ class NetworkService {
             query += `/Search?${queryArguments.pop()}`;
 
             if (queryArguments.length > 0) queryArguments.forEach(q => query += `&${q}`);
-
-            console.log(query);
         }
 
         const url = `${baseURL}/${stops}/${query}`;
-        console.log(url);
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getOfficerShootings() {
+        const url = `${baseURL}/${shootings}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getOfficerShooting(id) {
+        const url = `${baseURL}/${shootings}/${id}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getOfficerShootingsOrdered(action, order) {
+        const url = `${baseURL}/${shootings}?action=${action}&order=${order}`;
+        return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
+    }
+
+    async getOfficerGootingsInRange(start, end) {
+        const url = `${baseURL}/${shootings}?startDate=${start}&endDate=${end}`;
         return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
@@ -328,72 +262,15 @@ class NetworkService {
             query += `/Search?${queryArguments.pop()}`;
 
             if (queryArguments.length > 0) queryArguments.forEach(q => query += `&${q}`);
-
-            console.log(query);
         }
 
         const url = `${baseURL}/${shootings}/${query}`;
-        console.log(url);
         return await __WEBPACK_IMPORTED_MODULE_0__APIService___default.a.getData(url);
     }
 
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (new NetworkService());
-
-//async getTrafficStopsSearch(options) {
-//    console.log("In Network Service: " + options.officerGender + ": " + options.officerRace);
-//    let queryArgument = [];
-//    let url = "";
-
-//    if (options.startDate != undefined)
-//        queryArgument.push(`startDate=${options.startDate}`);
-
-//    if (options.endDate != undefined)
-//        queryArgument.push(`endDate=${options.endDate}`);
-
-//    if (options.reason != undefined)
-//        queryArgument.push(`reason=${options.reason}`);
-
-//    if (options.officerRace != undefined)
-//        queryArgument.push(`officerRace=${options.officerRace}`);
-
-//    if (options.officerGender != undefined)
-//        queryArgument.push(`officerGender=${options.officerGender}`);
-
-
-//    if (options.experienceMin != undefined)
-//        queryArgument.push(`experienceMin=${options.experienceMin}`);
-
-//    if (options.experienceMax != undefined)
-//        queryArgument.push(`experienceMax=${options.experienceMax}`);
-
-//    if (options.driverRace != undefined)
-//        queryArgument.push(`driverRace=${options.driverRace}`);
-
-//    if (options.driverGender != undefined)
-//        queryArgument.push(`driverGender=${options.driverGender}`);
-
-//    if (options.search != undefined)
-//        queryArgument.push(`search=${options.search}`);
-
-
-//    if (queryArguments.length > 0) {
-
-//        query += `/Search?${queryArguments.pop()}`;
-
-
-//        if (queryArguments.length > 0)
-//            queryArguments.forEach(q => query += `&${q}`);
-
-//        console.log(query);
-//    }
-
-//    const url = `${baseURL}/${stops}/${query}`;
-//    console.log(url);
-//    return await APIService.getData(url);
-
-//}
+/* unused harmony default export */ var _unused_webpack_default_export = (new NetworkService());
 
 /***/ }),
 /* 3 */
@@ -490,7 +367,7 @@ class ShootingSearch {
     }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (ShootingSearch);
+/* unused harmony default export */ var _unused_webpack_default_export = (ShootingSearch);
 
 /***/ })
 /******/ ]);
