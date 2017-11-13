@@ -163,11 +163,11 @@
     <Content Include="package.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Build\bundle.js" />
-    <Content Include="Scripts\ES6\APIService.js" />
+    <Content Include="Scripts\ES6\Utility\APIService.js" />
     <Content Include="Scripts\ES6\Components\Buttons.js" />
     <Content Include="Scripts\ES6\Components\Table.js" />
     <Content Include="Scripts\ES6\Types\DemographicSearch.js" />
-    <Content Include="Scripts\ES6\NetworkService.js" />
+    <Content Include="Scripts\ES6\Utility\NetworkService.js" />
     <Content Include="Scripts\ES6\Types\OfficerShooting.js" />
     <Content Include="Scripts\ES6\Types\ShootingSearch.js" />
     <Content Include="Scripts\ES6\Site.js" />
@@ -201,7 +201,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\ES6\Utility\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

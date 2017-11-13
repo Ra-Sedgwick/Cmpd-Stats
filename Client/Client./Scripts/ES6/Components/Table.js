@@ -1,4 +1,4 @@
-﻿import NetworkService from '../NetworkService.js';
+﻿import NetworkService from '../Utility/NetworkService.js';
 class Table {
 
 

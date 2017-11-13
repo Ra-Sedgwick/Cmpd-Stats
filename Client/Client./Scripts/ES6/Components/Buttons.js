@@ -1,4 +1,4 @@
-﻿import NetworkService from '../NetworkService';
+﻿import NetworkService from '../Utility/NetworkService';
 import Table from './Table';
 
 

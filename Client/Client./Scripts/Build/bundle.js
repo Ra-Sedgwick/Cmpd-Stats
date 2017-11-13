@@ -264,7 +264,7 @@ __WEBPACK_IMPORTED_MODULE_0__Components_Buttons_js__["a" /* default */].Initiali
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table__ = __webpack_require__(5);
 
 
@@ -277,7 +277,7 @@ class Buttons {
 
         demographicsButton.addEventListener('click', e => {
 
-            __WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getDemographics().then(data => {
+            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographics().then(data => {
                 console.log(data);
                 __WEBPACK_IMPORTED_MODULE_1__Table__["a" /* default */].Create(data, "table-1");
             }).catch(error => {
@@ -289,7 +289,7 @@ class Buttons {
 
         shootingsButton.addEventListener('click', e => {
 
-            __WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getOfficerShootings().then(data => {
+            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getOfficerShootings().then(data => {
                 console.log(data);
                 __WEBPACK_IMPORTED_MODULE_1__Table__["a" /* default */].Create(data, "table-1");
             }).catch(error => {
@@ -301,7 +301,7 @@ class Buttons {
 
         trafficButton.addEventListener('click', e => {
 
-            __WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getTrafficStops().then(data => {
+            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getTrafficStops().then(data => {
                 console.log(data);
                 __WEBPACK_IMPORTED_MODULE_1__Table__["a" /* default */].Create(data, "table-1");
             }).catch(error => {
@@ -345,7 +345,7 @@ module.exports = new APIService();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__NetworkService_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService_js__ = __webpack_require__(0);
 
 class Table {
 
