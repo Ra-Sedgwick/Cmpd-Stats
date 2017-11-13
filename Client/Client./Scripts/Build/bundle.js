@@ -91,7 +91,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_0__NetworkService__["a" /* default */].getOfficerShootings().then(data => {
     console.log(data);
-    __WEBPACK_IMPORTED_MODULE_5__Components_Table__["a" /* default */].Create(data, "table-1");
+    __WEBPACK_IMPORTED_MODULE_5__Components_Table__["a" /* default */].Create2(data, "table-1");
 }).catch(error => {
     console.log(error);
 });
@@ -404,16 +404,41 @@ class OfficerShooting {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
 class Table {
 
     Create(data, locationID) {
 
         const keys = Object.keys(data[0]);
-        const header = `<table class="table"><thead>${keys.map(key => `<th scope="col">${key}</th>`).join('')}</thead></table>`;
+        const header = `
+                        <table class="table">
+                            <thead>
+                                ${keys.map(key => `<th scope="col">${key}</th>`).join('')}
+                            </thead>
+                        </table>
+                        `;
         document.getElementById(locationID).innerHTML = header;
-        console.log(header);
     }
 
+    Create2(data, locationID) {
+
+        // Extract Header values
+        const keys = Object.keys(data[0]);
+
+        // Create Table
+        let table = document.createElement("table");
+
+        let tr = table.insertRow(-1);
+
+        // Insert Header
+        for (let i = 0; i < keys.length; i++) {
+            let th = document.createElement("th");
+            th.innerHTML = keys[i];
+            tr.appendChild(th);
+        }
+
+        document.getElementById(locationID).appendChild(table);
+    }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (new Table());

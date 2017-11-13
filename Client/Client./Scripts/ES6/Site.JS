@@ -6,10 +6,12 @@ import OfficerShooting from './Types/OfficerShooting';
 import Table from './Components/Table';
 
 
+
+
 NetworkService.getOfficerShootings()
     .then(data => {
         console.log(data);
-        Table.Create(data, "table-1");
+        Table.Create2(data, "table-1");
 
     })
     .catch(error => {
