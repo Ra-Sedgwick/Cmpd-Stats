@@ -11,8 +11,8 @@ namespace App
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-                                   
-            var prod = new EnableCorsAttribute("http://cmpdstatistics.azurewebsites.net", "*", "*");
+
+            var prod = new EnableCorsAttribute("http://cmpd-azurewebsite.net", "*", "*");
             var dev = new EnableCorsAttribute("http://localhost:50425", "*", "*");
 
             config.EnableCors(prod);

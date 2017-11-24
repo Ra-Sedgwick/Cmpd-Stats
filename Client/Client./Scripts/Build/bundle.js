@@ -73,10 +73,11 @@
 
 
 // Base URLS
-const baseURL = 'http://localhost:55981/api';
-const demographics = '/EmployeeDemographics';
-const stops = '/TrafficStops';
-const shootings = '/OfficerShootings';
+//const baseURL = 'http://localhost:55981/api';
+const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
+const demographics = 'EmployeeDemographics';
+const stops = 'TrafficStops';
+const shootings = 'OfficerShootings';
 
 const prod = 'http://cmpdstatistics.azurewebsites.net/api/';
 const test = 'https://jsonplaceholder.typicode.com/posts';
@@ -370,7 +371,7 @@ class Table {
                 // Insert Header
                 for (let i = 0; i < keys.length; i++) {
                         let th = document.createElement('th');
-                        th.innerHTML = keys[i];
+                        th.innerHTML = `<a href='./'>${keys[i]}</a>`;
                         tr.appendChild(th);
                 }
 

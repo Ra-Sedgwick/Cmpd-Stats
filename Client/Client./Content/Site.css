@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body {
+    margin-left: 15px;
+}
+
+#button-group-main {
+    margin-left: 0px;
+}

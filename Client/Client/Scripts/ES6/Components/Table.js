@@ -23,7 +23,7 @@ class Table {
         // Insert Header
         for (let i = 0; i < keys.length; i++) {
             let th = document.createElement('th');
-            th.innerHTML = keys[i];
+            th.innerHTML = `<a href='./'>${keys[i]}</a>`;
             tr.appendChild(th);
         }
 

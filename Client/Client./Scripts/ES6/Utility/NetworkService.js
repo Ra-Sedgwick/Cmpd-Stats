@@ -1,11 +1,12 @@
-﻿import APIService from 'APIService';
+﻿import APIService from './APIService';
 
 
 // Base URLS
-const baseURL = 'http://localhost:55981/api';
-const demographics = '/EmployeeDemographics';
-const stops = '/TrafficStops';
-const shootings = '/OfficerShootings';
+//const baseURL = 'http://localhost:55981/api';
+const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
+const demographics = 'EmployeeDemographics';
+const stops = 'TrafficStops';
+const shootings = 'OfficerShootings';
 
 const prod = 'http://cmpdstatistics.azurewebsites.net/api/';
 const test = 'https://jsonplaceholder.typicode.com/posts'
