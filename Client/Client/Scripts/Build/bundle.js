@@ -73,8 +73,8 @@
 
 
 // Base URLS
-//const baseURL = 'http://localhost:55981/api';
-const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
+const baseURL = 'http://localhost:55981/api';
+//const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
 const demographics = 'EmployeeDemographics';
 const stops = 'TrafficStops';
 const shootings = 'OfficerShootings';
@@ -267,49 +267,64 @@ __WEBPACK_IMPORTED_MODULE_0__Components_Buttons_js__["a" /* default */].Initiali
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DataTable__ = __webpack_require__(6);
+
 
 
 
 class Buttons {
 
-    Initialize() {
-        // Tabel buttons
-        let demographicsButton = document.getElementById('demographis-table-button');
+        Initialize() {
 
-        demographicsButton.addEventListener('click', e => {
+                let toggleButton = document.getElementById('toggle-test');
 
-            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographics().then(data => {
-                console.log(data);
-                __WEBPACK_IMPORTED_MODULE_1__Table__["a" /* default */].Create(data, "table-1");
-            }).catch(error => {
-                console.log(error);
-            });
-        });
+                toggleButton.addEventListener('click', e => {
 
-        let shootingsButton = document.getElementById('shootings-table-button');
+                        let tableContainer = document.getElementById('table-container');
+                        tableContainer.innerHTML = '';
 
-        shootingsButton.addEventListener('click', e => {
+                        let newTable = document.createElement('table');
+                        newTable.setAttribute('id', 'table-1');
+                        tableContainer.appendChild(newTable);
+                });
 
-            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getOfficerShootings().then(data => {
-                console.log(data);
-                __WEBPACK_IMPORTED_MODULE_1__Table__["a" /* default */].Create(data, "table-1");
-            }).catch(error => {
-                console.log(error);
-            });
-        });
+                // Tabel buttons
+                let demographicsButton = document.getElementById('demographis-table-button');
 
-        let trafficButton = document.getElementById('traffic-table-button');
+                demographicsButton.addEventListener('click', e => {
 
-        trafficButton.addEventListener('click', e => {
+                        __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographics().then(data => {
+                                console.log(data);
+                                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, 'table-1', 'table-container');
+                        }).catch(error => {
+                                console.log(error);
+                        });
+                });
 
-            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getTrafficStops().then(data => {
-                console.log(data);
-                __WEBPACK_IMPORTED_MODULE_1__Table__["a" /* default */].Create(data, "table-1");
-            }).catch(error => {
-                console.log(error);
-            });
-        });
-    }
+                let shootingsButton = document.getElementById('shootings-table-button');
+
+                shootingsButton.addEventListener('click', e => {
+
+                        __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getOfficerShootings().then(data => {
+                                console.log(data);
+                                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, 'table-1', 'table-container');
+                        }).catch(error => {
+                                console.log(error);
+                        });
+                });
+
+                let trafficButton = document.getElementById('traffic-table-button');
+
+                trafficButton.addEventListener('click', e => {
+
+                        __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getTrafficStops().then(data => {
+                                console.log(data);
+                                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, 'table-1', 'table-container');
+                        }).catch(error => {
+                                console.log(error);
+                        });
+                });
+        }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (new Buttons());
@@ -390,7 +405,76 @@ class Table {
         }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (new Table());
+/* unused harmony default export */ var _unused_webpack_default_export = (new Table());
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class DataTable {
+
+            Create(dataSet, tableID, containerID) {
+
+                        $(function () {
+
+                                    // Extract Header values
+                                    const keys = Object.keys(dataSet[0]);
+                                    let headers = [];
+
+                                    for (let i = 0; i < keys.length; i++) {
+
+                                                headers[i] = { data: keys[i], title: keys[i] };
+                                    }
+
+                                    let tableContainer = document.getElementById(containerID);
+                                    tableContainer.innerHTML = '';
+
+                                    let newTable = document.createElement('table');
+                                    newTable.setAttribute('id', tableID);
+                                    newTable.classList.add('table', 'table-striped');
+
+                                    tableContainer.appendChild(newTable);
+
+                                    $('#' + tableID).DataTable({
+                                                data: dataSet,
+                                                columns: headers,
+                                                destroy: true,
+                                                searching: false
+
+                                    });
+                        });
+            }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (new DataTable());
+
+//[
+//    {
+//        data: 'ObjectID',
+//        title: 'ObjectID'
+//    },
+//    {
+//        data: 'JOB_TITLE',
+//        title: 'JOB_TITLE'
+//    },
+//    {
+//        data: 'Years_Of_Service',
+//        title: 'Years_Of_Service'
+//    },
+//    {
+//        data: 'Age',
+//        title: 'Age'
+//    },
+//    {
+//        data: 'Gender',
+//        title: 'Gender'
+//    },
+//    {
+//        data: 'Race',
+//        title: 'Race'
+//    }
+//]
 
 /***/ })
 /******/ ]);

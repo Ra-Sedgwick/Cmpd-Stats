@@ -2,8 +2,8 @@
 
 
 // Base URLS
-//const baseURL = 'http://localhost:55981/api';
-const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
+const baseURL = 'http://localhost:55981/api';
+//const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
 const demographics = 'EmployeeDemographics';
 const stops = 'TrafficStops';
 const shootings = 'OfficerShootings';
