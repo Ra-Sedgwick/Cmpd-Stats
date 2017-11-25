@@ -432,8 +432,6 @@ class DataTable {
 
                                     let newTable = document.createElement('table');
                                     newTable.setAttribute('id', tableID);
-                                    newTable.classList.add('table', 'table-striped');
-
                                     tableContainer.appendChild(newTable);
 
                                     $('#' + tableID).DataTable({
