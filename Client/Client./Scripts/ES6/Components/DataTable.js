@@ -37,30 +37,3 @@
 }
 
 export default new DataTable();
-
-//[
-//    {
-//        data: 'ObjectID',
-//        title: 'ObjectID'
-//    },
-//    {
-//        data: 'JOB_TITLE',
-//        title: 'JOB_TITLE'
-//    },
-//    {
-//        data: 'Years_Of_Service',
-//        title: 'Years_Of_Service'
-//    },
-//    {
-//        data: 'Age',
-//        title: 'Age'
-//    },
-//    {
-//        data: 'Gender',
-//        title: 'Gender'
-//    },
-//    {
-//        data: 'Race',
-//        title: 'Race'
-//    }
-//]

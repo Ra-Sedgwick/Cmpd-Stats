@@ -274,57 +274,114 @@ __WEBPACK_IMPORTED_MODULE_0__Components_Buttons_js__["a" /* default */].Initiali
 
 class Buttons {
 
-        Initialize() {
+    Initialize() {
 
-                let toggleButton = document.getElementById('toggle-test');
+        const tableID = 'table-1';
+        const containerID = 'table-container';
+        const modalID = 'modal-container';
 
-                toggleButton.addEventListener('click', e => {
+        // Tabel buttons
+        // ===========================================================================================================
+        let demographicsButton = document.getElementById('demographis-table-button');
 
-                        let tableContainer = document.getElementById('table-container');
-                        tableContainer.innerHTML = '';
+        demographicsButton.addEventListener('click', e => {
 
-                        let newTable = document.createElement('table');
-                        newTable.setAttribute('id', 'table-1');
-                        tableContainer.appendChild(newTable);
-                });
+            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographics().then(data => {
+                console.log(data);
+                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
+                this.InsertSearchButton('demographics', tableID);
+                this.InsertModal('Employee Demographics', modalID);
+            }).catch(error => {
+                console.log(error);
+            });
+        });
 
-                // Tabel buttons
-                let demographicsButton = document.getElementById('demographis-table-button');
+        let shootingsButton = document.getElementById('shootings-table-button');
 
-                demographicsButton.addEventListener('click', e => {
+        shootingsButton.addEventListener('click', e => {
 
-                        __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographics().then(data => {
-                                console.log(data);
-                                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, 'table-1', 'table-container');
-                        }).catch(error => {
-                                console.log(error);
-                        });
-                });
+            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getOfficerShootings().then(data => {
+                console.log(data);
+                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
+                this.InsertSearchButton('shootings', tableID);
+            }).catch(error => {
+                console.log(error);
+            });
+        });
 
-                let shootingsButton = document.getElementById('shootings-table-button');
+        let trafficButton = document.getElementById('traffic-table-button');
 
-                shootingsButton.addEventListener('click', e => {
+        trafficButton.addEventListener('click', e => {
 
-                        __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getOfficerShootings().then(data => {
-                                console.log(data);
-                                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, 'table-1', 'table-container');
-                        }).catch(error => {
-                                console.log(error);
-                        });
-                });
+            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getTrafficStops().then(data => {
+                console.log(data);
+                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
+                this.InsertSearchButton('traffic', tableID);
+            }).catch(error => {
+                console.log(error);
+            });
+        });
+        // ===========================================================================================================
 
-                let trafficButton = document.getElementById('traffic-table-button');
 
-                trafficButton.addEventListener('click', e => {
+        // Form Buttons
+        // ===========================================================================================================
 
-                        __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getTrafficStops().then(data => {
-                                console.log(data);
-                                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, 'table-1', 'table-container');
-                        }).catch(error => {
-                                console.log(error);
-                        });
-                });
-        }
+
+        // ===========================================================================================================
+    }
+
+    InsertSearchButton(dataSet, containerID) {
+
+        let div = document.getElementById(containerID + '_length');
+        let button = document.createElement('button');
+
+        button.setAttribute('id', `search-button`);
+        button.setAttribute('data-toggle', 'modal');
+        //button.setAttribute('data-tarte', `#${dataSet}-search-modal`);
+        button.setAttribute('data-target', `#exampleModal`);
+
+        button.classList.add('btn', 'btn-success');
+        button.style.marginRight = '16px';
+
+        button.innerHTML = 'Search';
+
+        div.insertBefore(button, div.firstChild);
+    }
+
+    InsertModal(dataSet, containerID) {
+        const modalMarkup = `
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Search ${dataSet}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `;
+        let container = document.getElementById(containerID);
+        container.innerHTML = modalMarkup;
+    }
+
+    GetDemoForm() {
+        return `
+            <form>
+                
+            </form>
+        `;
+    }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (new Buttons());
@@ -446,33 +503,6 @@ class DataTable {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (new DataTable());
-
-//[
-//    {
-//        data: 'ObjectID',
-//        title: 'ObjectID'
-//    },
-//    {
-//        data: 'JOB_TITLE',
-//        title: 'JOB_TITLE'
-//    },
-//    {
-//        data: 'Years_Of_Service',
-//        title: 'Years_Of_Service'
-//    },
-//    {
-//        data: 'Age',
-//        title: 'Age'
-//    },
-//    {
-//        data: 'Gender',
-//        title: 'Gender'
-//    },
-//    {
-//        data: 'Race',
-//        title: 'Race'
-//    }
-//]
 
 /***/ })
 /******/ ]);
