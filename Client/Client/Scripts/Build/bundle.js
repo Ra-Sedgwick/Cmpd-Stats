@@ -289,8 +289,8 @@ class Buttons {
             __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographics().then(data => {
                 console.log(data);
                 __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
-                this.InsertSearchButton('demographics', tableID);
-                this.InsertModal('Employee Demographics', modalID);
+                //this.InsertSearchButton('demographics', tableID);
+                //this.InsertModal('Employee Demographics', modalID);
             }).catch(error => {
                 console.log(error);
             });
@@ -303,7 +303,7 @@ class Buttons {
             __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getOfficerShootings().then(data => {
                 console.log(data);
                 __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
-                this.InsertSearchButton('shootings', tableID);
+                //this.InsertSearchButton('shootings', tableID);
             }).catch(error => {
                 console.log(error);
             });
@@ -316,7 +316,7 @@ class Buttons {
             __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getTrafficStops().then(data => {
                 console.log(data);
                 __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
-                this.InsertSearchButton('traffic', tableID);
+                //this.InsertSearchButton('traffic', tableID);
             }).catch(error => {
                 console.log(error);
             });
@@ -326,7 +326,48 @@ class Buttons {
 
         // Form Buttons
         // ===========================================================================================================
+        let searchDemographics = document.getElementById('search-demographics');
 
+        searchDemographics.addEventListener('click', e => {
+
+            let queries = {};
+
+            let title = $('#title').val();
+            title = title ? undefined : title;
+            queries.title = title;
+
+            let expMin = $('#experienceMin').val();
+            expMin = expMin ? 0 : expMin;
+            queries.experienceMin = expMin;
+
+            let expMax = $('#experienceMax').val();
+            expMax = expMax ? 100 : expMax;
+            queries.experienceMax = expMax;
+
+            let ageMin = $('#ageMin').val();
+            ageMin = ageMin ? 0 : ageMin;
+            queries.ageMin = ageMin;
+
+            let ageMax = $('#ageMax').val();
+            ageMax = ageMax ? 100 : ageMax;
+            queries.ageMax = ageMax;
+
+            let gender = $('#gender-select');
+            gender = gender ? undefined : gender;
+            queries.gender = gender;
+
+            let race = $('#race');
+            race = race ? undefined : race;
+            queries.race = race;
+
+            __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographicsSearch(queries).then(data => {
+                console.log("Search Demo");
+                console.log(data);
+                __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
+            }).catch(error => {
+                console.log(error);
+            });
+        });
 
         // ===========================================================================================================
     }
@@ -494,8 +535,7 @@ class DataTable {
                                     $('#' + tableID).DataTable({
                                                 data: dataSet,
                                                 columns: headers,
-                                                destroy: true,
-                                                searching: false
+                                                destroy: true
 
                                     });
                         });

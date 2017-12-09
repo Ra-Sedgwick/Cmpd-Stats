@@ -27,8 +27,7 @@
            $('#' + tableID).DataTable({
                 data: dataSet,
                 columns: headers,
-                destroy: true,
-                searching: false
+                destroy: true
 
 
             });
