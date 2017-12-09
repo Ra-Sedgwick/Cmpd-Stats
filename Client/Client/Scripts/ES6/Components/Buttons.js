@@ -69,51 +69,6 @@ class Buttons {
 
         // Form Buttons
         // ===========================================================================================================
-        let searchDemographics = document.getElementById('search-demographics');
-
-        searchDemographics.addEventListener('click', (e) => {
-
-            let queries = {};
-
-            let title = $('#title').val();
-            title = (title) ? undefined : title;
-            queries.title = title;
-
-            let expMin = $('#experienceMin').val();
-            expMin = (expMin) ? 0 : expMin;
-            queries.experienceMin = expMin;
-
-            let expMax = $('#experienceMax').val();
-            expMax = (expMax) ? 100 : expMax;
-            queries.experienceMax = expMax;
-
-            let ageMin = $('#ageMin').val();
-            ageMin = (ageMin) ? 0 : ageMin;
-            queries.ageMin = ageMin;
-
-            let ageMax = $('#ageMax').val();
-            ageMax = (ageMax) ? 100 : ageMax;
-            queries.ageMax = ageMax;
-
-            let gender = $('#gender-select');
-            gender = (gender) ? undefined : gender;
-            queries.gender = gender;
-
-            let race = $('#race');
-            race = (race) ? undefined : race;
-            queries.race = race;
-
-            NetworkService.getDemographicsSearch(queries)
-                .then(data => {
-                    console.log("Search Demo");
-                    console.log(data);
-                    DataTable.Create(data, tableID, containerID);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-
-        })
         
 
         // ===========================================================================================================
