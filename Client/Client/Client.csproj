@@ -166,7 +166,7 @@
     <Content Include="Scripts\Build\bundle.js" />
     <Content Include="Scripts\ES6\Components\Chart.js" />
     <Content Include="Scripts\ES6\Components\Charts.js" />
-    <Content Include="Scripts\ES6\Components\OfficerShootingBarChart.js" />
+    <Content Include="Scripts\ES6\Components\OfficerShootingCharts.js" />
     <Content Include="Scripts\ES6\Utility\APIService.js" />
     <Content Include="Scripts\ES6\Components\Buttons.js" />
     <Content Include="Scripts\ES6\Components\Table.js" />

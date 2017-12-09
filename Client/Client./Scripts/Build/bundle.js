@@ -14425,7 +14425,7 @@ class DataTable {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Chart__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Chart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Chart__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OfficerShootingBarChart__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utility_NetworkService__ = __webpack_require__(0);
 
 
@@ -14436,37 +14436,18 @@ class Charts {
     Initialize() {
 
         __WEBPACK_IMPORTED_MODULE_2__Utility_NetworkService__["a" /* default */].getOfficerShootings().then(data => {
+
             console.log("Chart Data");
             console.log(data);
-            __WEBPACK_IMPORTED_MODULE_1__OfficerShootingBarChart__["a" /* default */].GetChart(data);
+
+            __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__["a" /* default */].GetBar(data);
+            __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__["a" /* default */].GetRadar(data);
+            __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__["a" /* default */].GetLine(data);
         }).catch(error => {
             console.log(error);
         });
-
-        let ctx = document.getElementById("test-chart");
-        var myChart = new __WEBPACK_IMPORTED_MODULE_0__Chart___default.a(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-                    borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
     }
+
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (new Charts());
@@ -14480,9 +14461,16 @@ class Charts {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Chart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Chart__);
 
 
-class OfficerShootingBarChart {
+class OfficerShootingCharts {
 
-    GetChart(dataSet) {
+    constructor() {
+        const purple = "rgba(29, 17, 96)";
+        const teal = "rgba((0, 120, 140)";
+        const transparentPurple = "rgba(29, 17, 96, .6)";
+        const transparentTeal = "rgba((0, 120, 140, .6)";
+    }
+
+    GetRadar(dataSet) {
 
         // Split data set into labels and data;
         let labels = ['White', 'Black', 'Hispanic', 'Other'];
@@ -14512,17 +14500,37 @@ class OfficerShootingBarChart {
                 labels: labels,
                 datasets: [{
                     label: 'Officers',
-                    backgroundColor: "rgba(29, 17, 96, 0.4)",
-                    borderColor: "rgba(29, 17, 96,1)",
+                    backgroundColor: this.putransparentPurple,
+                    borderColor: this.teal,
                     data: officers
                 }, {
                     label: 'Individuals',
-                    backgroundColor: "rgba(0, 120, 140, 0.4)",
-                    borderColor: "rgba((0, 120, 140, 1)",
+                    backgroundColor: this.transparentTeal,
+                    borderColor: this.purple,
                     data: individuals
                 }]
             }
         });
+    }
+
+    GetBar(dataSet) {
+
+        // Split data set into labels and data;
+        let labels = ['White', 'Black', 'Hispanic', 'Other'];
+        let officers = [0, 0, 0, 0];
+        let individuals = [0, 0, 0, 0];
+
+        for (var i = 0; i < dataSet.length; i++) {
+            for (var j = 0; j < labels.length; j++) {
+
+                if (dataSet[i].OFFICER_RACE == labels[j]) officers[j]++;
+
+                if (dataSet[i].INDIVIDUAL_RACE == labels[j]) individuals[j]++;
+            }
+        }
+
+        officers[3] = dataSet.length - (officers[0] + officers[1] + officers[2]);
+        individuals[3] = dataSet.length - (individuals[0] + individuals[1] + individuals[2]);
 
         const barContainer = document.getElementById('OIS-bar-chart');
         let barChart = new __WEBPACK_IMPORTED_MODULE_0__Chart___default.a(barContainer, {
@@ -14531,61 +14539,89 @@ class OfficerShootingBarChart {
                 labels: labels,
                 datasets: [{
                     label: "Officer",
-                    backgroundColor: "rgba(29, 17, 96, 1)",
-                    borderColor: "rgba(0, 120, 140, 1)",
+                    backgroundColor: this.purple,
+                    borderColor: this.teal,
                     borderWidth: 2,
                     data: officers
                 }, {
                     label: "Citizens",
-                    backgroundColor: "rgba(0, 120, 140, 1)",
-                    borderColor: "rgba(29, 17, 96, 1)",
+                    backgroundColor: this.teal,
+                    borderColor: this.purple,
                     borderWidth: 2,
                     data: individuals
                 }]
             }
         });
+    }
 
-        //const barContainer = document.getElementById('OIS-bar-chart');
-        //let barChart = new Chart(barContainer, {
-        //    type: 'bar',
-        //    data: {
-        //        labels: labels,
-        //        datasets: [{
-        //            label: 'Officer Shootings By Race',
-        //            data: data,
-        //            backgroundColor: [
-        //                'rgba(255, 99, 132, 0.2)',
-        //                'rgba(54, 162, 235, 0.2)',
-        //                'rgba(255, 206, 86, 0.2)',
-        //                'rgba(75, 192, 192, 0.2)',
-        //                'rgba(153, 102, 255, 0.2)',
-        //                'rgba(255, 159, 64, 0.2)'
-        //            ],
-        //            borderColor: [
-        //                'rgba(255,99,132,1)',
-        //                'rgba(54, 162, 235, 1)',
-        //                'rgba(255, 206, 86, 1)',
-        //                'rgba(75, 192, 192, 1)',
-        //                'rgba(153, 102, 255, 1)',
-        //                'rgba(255, 159, 64, 1)'
-        //            ],
-        //            borderWidth: 1
-        //        }]
-        //    },
-        //    options: {
-        //        scales: {
-        //            yAxes: [{
-        //                ticks: {
-        //                    beginAtZero: true
-        //                }
-        //            }]
-        //        }
-        //    }
-        //});
+    GetLine(dataSet) {
+
+        let yearLabels = [2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015];
+        let fatalities = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let nonFatalities = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        for (var i = 0; i < dataSet.length; i++) {
+
+            for (var j = 0; j < yearLabels.length; j++) {
+
+                if (dataSet[i].YR === yearLabels[j]) {
+
+                    if (dataSet[i].INDIVIDUAL_INJURY_TYPE == 'Fatal Injury') fatalities[j]++;else {
+                        nonFatalities[j]++;
+                    }
+                }
+            }
+        }
+
+        console.log("Line");
+        console.log(fatalities);
+        console.log(nonFatalities);
+
+        const lineChartData = {
+            labels: yearLabels,
+            dataSets: [{
+                label: "Fatal",
+                borderColor: 'rgba(29, 17, 96)',
+                backgroundColor: 'rgba(29, 17, 96)',
+                fill: false,
+                data: fatalities
+            }, {
+                label: "Non-Fatal",
+                borderColor: "rgba((0, 120, 140)",
+                backgroundColor: "rgba((0, 120, 140)",
+                fill: false,
+                data: nonFatalities
+
+            }]
+        };
+
+        const lineContainer = document.getElementById('OIS-line-chart');
+
+        let theChart = new __WEBPACK_IMPORTED_MODULE_0__Chart___default.a(lineContainer, {
+            type: 'line',
+            data: {
+                labels: yearLabels,
+                datasets: [{
+                    data: fatalities,
+                    label: "Fatalities",
+                    borderColor: "#3e95cd"
+                }, {
+                    data: nonFatalities,
+                    label: "Non-Fatalities",
+                    borderColor: "#8e5ea2"
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'World population per region (in millions)'
+                }
+            }
+        });
     }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (new OfficerShootingBarChart());
+/* harmony default export */ __webpack_exports__["a"] = (new OfficerShootingCharts());
 
 /***/ })
 /******/ ]);
