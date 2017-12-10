@@ -8,16 +8,56 @@
 
 <div class="row" id="button-group-main">
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" id="demographis-table-button" class="btn btn-secondary">Employee Demographics</button>
-        <button type="button" id="shootings-table-button" class="btn btn-secondary">Officer Involved Shootings</button>
-        <button type="button" id="traffic-table-button" class="btn btn-secondary">Traffic Stops</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Officer Involved Shootings <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="shootings-table-button">Table</a></li>
+                <li><a href="#" id="shootings-dashboard-button">Dash Board</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Employee Demogrphics <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a id="demographis-table-button">Table</a></li>
+                <li><a href="#" id="shootings-table-button">Dash Board</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Traffic Stops <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a id="traffic-table-button" >Table</a></li>
+                <li><a href="#" id="shootings-table-button">Dash Board</a></li>
+            </ul>
+        </div>
+
     </div>
-    <div id="table-container">
+    <div>
+        <p id="home-container">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</pid="home-container">
+
+    </div>
+    <div id="dashboard-container" style="display: none;">
+        <canvas class="chart" id="OIS-stacked-bar-chart" ></canvas>
+        <canvas class="chart" id="OIS-radar-chart" ></canvas>
+        <canvas class="chart" id="OIS-line-chart" ></canvas>
+    </div>
+    
+
+    <div id="table-container" style="display: none;">
         <table id="table-1"></table>
     </div>
+
+    
+
 </div>
 
-<canvas id="OIS-stacked-bar-chart" width="1000" height="400"></canvas>
-<canvas id="OIS-radar-chart" width="1000" height="400"></canvas>
-<canvas id="OIS-line-chart" width="1000" height="400"></canvas>
+
 

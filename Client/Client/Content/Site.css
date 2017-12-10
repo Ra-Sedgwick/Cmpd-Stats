@@ -44,3 +44,12 @@ body {
     height: 35px !important;
 }
 
+.chart {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+#dashboard-container {
+    width: auto;
+}
+

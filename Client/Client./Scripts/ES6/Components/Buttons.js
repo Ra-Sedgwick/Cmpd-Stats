@@ -13,6 +13,9 @@ class Buttons {
         const containerID = 'table-container';
         const modalID = 'modal-container';
 
+
+
+
         // Tabel buttons
         // ===========================================================================================================
         let demographicsButton = document.getElementById('demographis-table-button');
@@ -32,20 +35,34 @@ class Buttons {
 
         });
 
-        let shootingsButton = document.getElementById('shootings-table-button');
+        let shootingsTableButton = document.getElementById('shootings-table-button');
 
-        shootingsButton.addEventListener('click', (e) => {
+        shootingsTableButton.addEventListener('click', (e) => {
+
+            e.preventDefault();
+
+            document.getElementById('table-container').style.display = 'block';
+            document.getElementById('dashboard-container').style.display = 'none';
 
             NetworkService.getOfficerShootings()
                 .then(data => {
                     console.log(data);
                     DataTable.Create(data, tableID, containerID);
-                    //this.InsertSearchButton('shootings', tableID);
                 })
                 .catch(error => {
                     console.log(error);
                 });
 
+        })
+
+        let shootingsDashboardButton = document.getElementById('shootings-dashboard-button');
+
+        shootingsDashboardButton.addEventListener('click', (e) => {
+
+            e.preventDefault();
+
+            document.getElementById('table-container').style.display = 'none';
+            document.getElementById('dashboard-container').style.display = 'block';
         })
 
         let trafficButton = document.getElementById('traffic-table-button');
