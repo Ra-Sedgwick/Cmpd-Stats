@@ -16,6 +16,7 @@ class Charts {
                 OfficerShootingCharts.GetBar(data);
                 OfficerShootingCharts.GetRadar(data);
                 OfficerShootingCharts.GetLine(data);
+                OfficerShootingCharts.GetStackedBar(data);
 
             })
             .catch(error => {
