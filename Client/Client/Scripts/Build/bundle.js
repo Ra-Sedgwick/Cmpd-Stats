@@ -14440,7 +14440,6 @@ class Charts {
             console.log("Chart Data");
             console.log(data);
 
-            __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__["a" /* default */].GetBar(data);
             __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__["a" /* default */].GetRadar(data);
             __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__["a" /* default */].GetLine(data);
             __WEBPACK_IMPORTED_MODULE_1__OfficerShootingCharts__["a" /* default */].GetStackedBar(data);
@@ -14463,6 +14462,18 @@ class Charts {
 
 
 class OfficerShootingCharts {
+
+    constructor() {
+        this.Blue = 'rgba(41, 128, 185, 1)';
+        this.BlueT = 'rgba(41, 128, 185, 0.6)';
+        this.Border = '#222222';
+        this.Asphalt = 'rgba(52, 73, 94, 1)';
+        this.AsphaltT = 'rgba(52, 73, 94, 0.6)';
+        this.Red = 'rgba(192, 57, 43, 1.0)';
+        this.RedT = 'rgba(192, 57, 43, 0.6)';
+        this.Green = 'rgba(39, 174, 96,1.0)';
+        this.GreenT = 'rgba(39, 174, 96, 0.6)';
+    }
 
     GetStackedBar(dataSet) {
 
@@ -14493,20 +14504,28 @@ class OfficerShootingCharts {
         const chartData = {
             labels: labels,
             datasets: [{
-                label: 'White Citizen',
-                backgroundColor: 'Blue',
+                label: 'White',
+                backgroundColor: this.AsphaltT,
+                borderColor: this.Border,
+                borderWidth: 3,
                 data: whiteIndividuals
             }, {
-                label: 'Black Citizen',
-                backgroundColor: "Green",
+                label: 'Black',
+                backgroundColor: this.BlueT,
+                borderColor: this.Border,
+                borderWidth: 3,
                 data: blackIndividuals
             }, {
-                label: 'Hispanic Citizen',
-                backgroundColor: 'Red',
+                label: 'Hispanic',
+                backgroundColor: this.GreenT,
+                borderColor: this.Border,
+                borderWidth: 3,
                 data: hispanicIndividuals
             }, {
-                label: 'Other Citizen',
-                backgroundColor: 'Black',
+                label: 'Other',
+                backgroundColor: this.RedT,
+                borderColor: this.Border,
+                borderWidth: 3,
                 data: otherIndividuals
             }]
         };
@@ -14518,7 +14537,7 @@ class OfficerShootingCharts {
             options: {
                 title: {
                     display: true,
-                    text: 'Officer Involved Shootings 05\'- 15\''
+                    text: 'Citizens Race'
                 },
                 tooltips: {
                     mode: 'index',
@@ -14632,106 +14651,19 @@ class OfficerShootingCharts {
                 labels: labels,
                 datasets: [{
                     label: 'Violation',
-                    backgroundColor: "rgba(29, 17, 96, .6)",
-                    borderColor: "rgba(0, 120, 140)",
+                    backgroundColor: this.Asphalt,
+                    borderColor: this.Border,
                     data: violation
                 }, {
                     label: 'Fatal',
-                    backgroundColor: "rgba(255, 105, 180, .6)",
-                    borderColor: "rgba(255, 192, 203)",
+                    backgroundColor: this.GreenT,
+                    borderColor: this.Border,
                     data: fatal
                 }, {
                     label: 'Miss',
-                    backgroundColor: "rgba(0, 120, 140, .6)",
-                    borderColor: "rgba(29, 17, 96)",
+                    backgroundColor: this.BlueT,
+                    borderColor: this.Border,
                     data: miss
-                }]
-            }
-        });
-    }
-
-    //GetRadar(dataSet) {
-
-    //    // Split data set into labels and data;
-    //    let labels = ['White', 'Black', 'Hispanic', 'Other']
-    //    let officers = [0, 0, 0, 0];
-    //    let individuals = [0, 0, 0, 0];
-
-    //    for (var i = 0; i < dataSet.length; i++) {
-    //        for (var j = 0; j < labels.length; j++) {
-
-    //            if (dataSet[i].OFFICER_RACE == labels[j])
-    //                officers[j]++;
-
-    //            if (dataSet[i].INDIVIDUAL_RACE == labels[j])
-    //                individuals[j]++;
-    //        }
-
-    //    }
-
-    //    officers[3] = dataSet.length - (officers[0] + officers[1] + officers[2]);
-    //    individuals[3] = dataSet.length - (individuals[0] + individuals[1] + individuals[2]);
-
-    //    console.log("Count");
-    //    console.log(officers);
-    //    console.log(individuals);
-
-    //    const radarContainer = document.getElementById('OIS-radar-chart');
-    //    let radarChart = new Chart(radarContainer, {
-    //        type: 'radar',
-    //        data: {
-    //            labels: labels,
-    //            datasets: [{
-    //                label: 'Officers',
-    //                backgroundColor: "rgba(29, 17, 96, .6)",
-    //                borderColor: "rgba(0, 120, 140)",
-    //                data: officers
-    //            }, {
-    //                label: 'Individuals',
-    //                backgroundColor: "rgba(0, 120, 140, .6)",
-    //                borderColor: "rgba(29, 17, 96)",
-    //                data: individuals
-    //            }]
-    //        }
-    //    })
-    //}
-
-    GetBar(dataSet) {
-
-        // Split data set into labels and data;
-        let labels = ['White', 'Black', 'Hispanic', 'Other'];
-        let officers = [0, 0, 0, 0];
-        let individuals = [0, 0, 0, 0];
-
-        for (var i = 0; i < dataSet.length; i++) {
-            for (var j = 0; j < labels.length; j++) {
-
-                if (dataSet[i].OFFICER_RACE == labels[j]) officers[j]++;
-
-                if (dataSet[i].INDIVIDUAL_RACE == labels[j]) individuals[j]++;
-            }
-        }
-
-        officers[3] = dataSet.length - (officers[0] + officers[1] + officers[2]);
-        individuals[3] = dataSet.length - (individuals[0] + individuals[1] + individuals[2]);
-
-        const barContainer = document.getElementById('OIS-bar-chart');
-        let barChart = new __WEBPACK_IMPORTED_MODULE_0__Chart___default.a(barContainer, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Officer",
-                    backgroundColor: "rgba(29, 17, 96, .6)",
-                    borderColor: "rgba(0, 120, 140)",
-                    borderWidth: 2,
-                    data: officers
-                }, {
-                    label: "Citizens",
-                    backgroundColor: "rgba(0, 120, 140, .6)",
-                    borderColor: "rgba(29, 17, 96)",
-                    borderWidth: 2,
-                    data: individuals
                 }]
             }
         });
@@ -14760,24 +14692,6 @@ class OfficerShootingCharts {
         console.log(fatalities);
         console.log(nonFatalities);
 
-        const lineChartData = {
-            labels: yearLabels,
-            dataSets: [{
-                label: "Fatal",
-                borderColor: 'rgba(29, 17, 96)',
-                backgroundColor: 'rgba(29, 17, 96)',
-                fill: false,
-                data: fatalities
-            }, {
-                label: "Non-Fatal",
-                borderColor: "rgba((0, 120, 140)",
-                backgroundColor: "rgba((0, 120, 140)",
-                fill: false,
-                data: nonFatalities
-
-            }]
-        };
-
         const lineContainer = document.getElementById('OIS-line-chart');
 
         let theChart = new __WEBPACK_IMPORTED_MODULE_0__Chart___default.a(lineContainer, {
@@ -14787,11 +14701,11 @@ class OfficerShootingCharts {
                 datasets: [{
                     data: fatalities,
                     label: "Fatalities",
-                    borderColor: "#3e95cd"
+                    borderColor: this.Green
                 }, {
                     data: nonFatalities,
                     label: "Non-Fatalities",
-                    borderColor: "#8e5ea2"
+                    borderColor: this.Blue
                 }]
             },
             options: {

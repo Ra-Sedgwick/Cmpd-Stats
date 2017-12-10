@@ -13,7 +13,6 @@ class Charts {
                 console.log("Chart Data");
                 console.log(data);
 
-                OfficerShootingCharts.GetBar(data);
                 OfficerShootingCharts.GetRadar(data);
                 OfficerShootingCharts.GetLine(data);
                 OfficerShootingCharts.GetStackedBar(data);
