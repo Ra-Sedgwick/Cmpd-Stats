@@ -53,28 +53,29 @@ class OfficerShootingCharts {
         const chartData = {
             labels: labels,
             datasets: [{
-                label: 'White',
-                backgroundColor: this.AsphaltT,
-                borderColor: this.Border,
-                borderWidth: 3,
-                data: whiteIndividuals
-            }, {
                 label: 'Black',
-                backgroundColor: this.BlueT,
-                borderColor: this.Border,
-                borderWidth: 3,
-                data: blackIndividuals
-            }, {
-                label: 'Hispanic',
                 backgroundColor: this.GreenT,
                 borderColor: this.Border,
-                borderWidth: 3,
+                borderWidth: 2,
+                data: blackIndividuals
+            }, {
+                label: 'White',
+                backgroundColor: this.BlueT,
+                borderColor: this.Border,
+                borderWidth: 2,
+                data: whiteIndividuals
+                
+            }, {
+                label: 'Hispanic',
+                backgroundColor: this.RedT,
+                borderColor: this.Border,
+                borderWidth: 2,
                 data: hispanicIndividuals
             }, {
                 label: 'Other',
-                backgroundColor: this.RedT,
+                backgroundColor: this.AsphaltT,
                 borderColor: this.Border,
-                borderWidth: 3,
+                borderWidth: 2,
                 data: otherIndividuals
             }]
         };
@@ -221,19 +222,22 @@ class OfficerShootingCharts {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Violation',
+                    label: 'Policy Violation',
                     backgroundColor: this.Asphalt,
                     borderColor: this.Border,
+                    borderWidth: 2,
                     data: violation
                 }, {
                     label: 'Fatal',
                     backgroundColor: this.GreenT,
                     borderColor: this.Border,
+                    borderWidth: 2,
                     data: fatal
                     }, {
                     label: 'Miss',
                     backgroundColor: this.BlueT,
                     borderColor: this.Border,
+                    borderWidth: 2,
                     data: miss
                 }]
             }
@@ -283,13 +287,8 @@ class OfficerShootingCharts {
                     borderColor: this.Blue
                 }
                 ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'World population per region (in millions)'
-                }
             }
+
         });
         
     }
