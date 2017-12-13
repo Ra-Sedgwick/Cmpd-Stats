@@ -73,8 +73,8 @@
 
 
 // Base URLS
-const baseURL = 'http://localhost:55981/api';
-//const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
+//const baseURL = 'http://localhost:55981/api';
+const baseURL = 'http://cmpdstatistics.azurewebsites.net/api';
 const demographics = 'EmployeeDemographics';
 const stops = 'TrafficStops';
 const shootings = 'OfficerShootings';
@@ -14201,6 +14201,11 @@ class Buttons {
 
         demographicsButton.addEventListener('click', e => {
 
+            e.preventDefault();
+
+            document.getElementById('table-container').style.display = 'block';
+            document.getElementById('dashboard-container').style.display = 'none';
+
             __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getDemographics().then(data => {
                 console.log(data);
                 __WEBPACK_IMPORTED_MODULE_2__DataTable__["a" /* default */].Create(data, tableID, containerID);
@@ -14241,6 +14246,11 @@ class Buttons {
         let trafficButton = document.getElementById('traffic-table-button');
 
         trafficButton.addEventListener('click', e => {
+
+            e.preventDefault();
+
+            document.getElementById('table-container').style.display = 'block';
+            document.getElementById('dashboard-container').style.display = 'none';
 
             __WEBPACK_IMPORTED_MODULE_0__Utility_NetworkService__["a" /* default */].getTrafficStops().then(data => {
                 console.log(data);

@@ -22,6 +22,11 @@ class Buttons {
 
         demographicsButton.addEventListener('click', (e) => {
 
+            e.preventDefault();
+
+            document.getElementById('table-container').style.display = 'block';
+            document.getElementById('dashboard-container').style.display = 'none';
+
             NetworkService.getDemographics()
                 .then(data => {
                     console.log(data);
@@ -68,6 +73,11 @@ class Buttons {
         let trafficButton = document.getElementById('traffic-table-button');
 
         trafficButton.addEventListener('click', (e) => {
+
+            e.preventDefault();
+
+            document.getElementById('table-container').style.display = 'block';
+            document.getElementById('dashboard-container').style.display = 'none';
 
             NetworkService.getTrafficStops()
                 .then(data => {
